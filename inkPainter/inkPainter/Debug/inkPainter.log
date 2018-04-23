@@ -1,0 +1,13 @@
+﻿  stdafx.cpp
+  ViewTree.cpp
+  PropertiesWnd.cpp
+  OutputWnd.cpp
+  MainFrm.cpp
+  inkPainterView.cpp
+  inkPainterDoc.cpp
+  inkPainter.cpp
+  FileView.cpp
+  ClassView.cpp
+  Generating Code...
+  inkPainter.vcxproj -> D:\ink painter\inkPainter\Debug\inkPainter.exe
+  inkPainter.vcxproj -> D:\ink painter\inkPainter\Debug\inkPainter.pdb (Partial PDB)
