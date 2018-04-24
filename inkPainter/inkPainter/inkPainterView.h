@@ -39,6 +39,11 @@ protected:
 
 // Generated message map functions
 protected:
+	//{{AFX_MSG(CinkPainterView)    /*用宏将消息响应和函数关联起来*/
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	//{{AFX_MSG 
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);

@@ -22,6 +22,11 @@
 IMPLEMENT_DYNCREATE(CinkPainterView, CView)
 
 BEGIN_MESSAGE_MAP(CinkPainterView, CView)
+	//{{AFX_MSG(CinkPainterView)   /*用宏将消息响应和函数关联起来*/
+	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
+	ON_WM_MOUSEMOVE()
+	//{{AFX_MSG 
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
@@ -102,7 +107,40 @@ void CinkPainterView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 #endif
 }
 
+//m_point保存当用户点击界面时点击的位置  
+CPoint m_point;
+//m_click=true表示鼠标点击 false表示鼠标释放  
+bool m_click;
+void CinkPainterView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	//把当前点击的点的位置赋给点m_point  
+	m_point = point;
+	m_click = true;
+	CView::OnLButtonDown(nFlags, point);
+}
 
+void CinkPainterView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	m_click = false;
+	CView::OnLButtonUp(nFlags, point);
+}
+
+//鼠标移动绘制图形  
+void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	//定义画笔并选择  
+	CDC *p = GetDC();
+	CPen pen(PS_SOLID, 4, RGB(255, 0, 0));//可以改pen的设置
+	p->SelectObject(pen);
+
+	//鼠标按下进行绘制  
+	if (m_click == true) {
+		p->MoveTo(m_point);
+		p->LineTo(point);
+		m_point = point;
+	}
+	CView::OnMouseMove(nFlags, point);
+}
 // CinkPainterView diagnostics
 
 #ifdef _DEBUG
