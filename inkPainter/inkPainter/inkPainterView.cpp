@@ -33,6 +33,10 @@ BEGIN_MESSAGE_MAP(CinkPainterView, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CinkPainterView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_COMMAND(ID_SETTINGS_SIZE, &CinkPainterView::OnSettingSize)
+	ON_COMMAND(ID_SETTINGS_COLOR, &CinkPainterView::OnSettingColor)
+	ON_COMMAND(ID_SETTINGS_BRUSH, &CinkPainterView::OnSettingBrush)
+	ON_COMMAND(ID_SETTINGS_OPACITY, &CinkPainterView::OnSettingOpacity)
 END_MESSAGE_MAP()
 
 // CinkPainterView construction/destruction
@@ -140,6 +144,37 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 		m_point = point;
 	}
 	CView::OnMouseMove(nFlags, point);
+}
+//»­±Ê´óÐ¡ÉèÖÃ
+void CinkPainterView::OnSettingSize()
+{
+	//CDialog* dlg = new CDialog;
+	//dlg->Create("set size");
+	AfxMessageBox(L"set size ");
+}
+
+//»­±ÊÑÕÉ«ÉèÖÃ
+void CinkPainterView::OnSettingColor()
+{
+	//CDialog* dlg = new CDialog;
+	//dlg->Create("set size");
+	AfxMessageBox(L"set color ");
+}
+
+//»­±Ê±ÊË¢ÉèÖÃ
+void CinkPainterView::OnSettingBrush()
+{
+	//CDialog* dlg = new CDialog;
+	//dlg->Create("set size");
+	AfxMessageBox(L"set brush ");
+}
+
+//»­±ÊÇáÖØ ²»Í¸Ã÷¶È ÉèÖÃ
+void CinkPainterView::OnSettingOpacity()
+{
+	//CDialog* dlg = new CDialog;
+	//dlg->Create("set size");
+	AfxMessageBox(L"set opacity ");
 }
 // CinkPainterView diagnostics
 
