@@ -11,6 +11,7 @@
 
 #include "inkPainterDoc.h"
 #include "inkPainterView.h"
+#include "SetSizeDig.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -148,16 +149,17 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 //画笔大小设置
 void CinkPainterView::OnSettingSize()
 {
-	//CDialog* dlg = new CDialog;
-	//dlg->Create("set size");
-	AfxMessageBox(L"set size ");
+	//模态对话框 点击OK后对话框被销毁
+	CSetSizeDig sizeDig;
+	sizeDig.DoModal();
 }
-
 //画笔颜色设置
 void CinkPainterView::OnSettingColor()
 {
-	//CDialog* dlg = new CDialog;
-	//dlg->Create("set size");
+	/*非模态对话框（指针or设为成员）点击OK后对话框仅被覆盖(响应基类的OnOK)
+	CSetSizeDig* dlg = new CSetSizeDig();
+	dlg->Create(IDD_DIALOG1,this);
+	dlg->ShowWindow(SW_SHOW);*/
 	AfxMessageBox(L"set color ");
 }
 
