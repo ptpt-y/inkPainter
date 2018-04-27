@@ -1,7 +1,4 @@
-﻿  inkPainterView.cpp
-c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(88): warning C4005: 'IDCANCEL': macro redefinition
-  c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
-C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.rh(1365): warning RC4005: 'IDCANCEL' : redefinition
+﻿C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.rh(1365): warning RC4005: 'IDCANCEL' : redefinition
   
   inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.exe
   inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.pdb (Partial PDB)
