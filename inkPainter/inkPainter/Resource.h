@@ -84,7 +84,6 @@
 #define IDS_FIND_TAB                    302
 #define IDS_EXPLORER                    305
 #define IDS_EDIT_MENU                   306
-#define IDD_DIALOG1                     313
 #define IDD_SETTING_SIZE                313
 #define IDD_SETTING_COLOR               315
 #define IDCANCEL                        1000
