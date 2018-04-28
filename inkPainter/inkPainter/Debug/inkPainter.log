@@ -1,32 +1,32 @@
 ﻿  inkPainterView.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   inkPainterDoc.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   inkPainter.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   SettingSizeDlg.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   SettingColorDlg.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   PropertiesWnd.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   OutputWnd.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   MainFrm.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   FileView.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   ClassView.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+d:\inkpainter\inkpainter\inkpainter\resource.h(89): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
   正在生成代码...
 C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.rh(1365): warning RC4005: 'IDCANCEL' : redefinition
