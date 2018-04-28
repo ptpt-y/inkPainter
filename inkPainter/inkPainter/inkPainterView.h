@@ -53,6 +53,8 @@ protected:
 	afx_msg void OnSettingBrush();
 	afx_msg void OnSettingOpacity();
 	DECLARE_MESSAGE_MAP()
+private:
+	unsigned int m_nLineWidth;
 };
 
 #ifndef _DEBUG  // debug version in inkPainterView.cpp

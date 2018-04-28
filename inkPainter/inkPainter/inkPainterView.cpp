@@ -11,7 +11,8 @@
 
 #include "inkPainterDoc.h"
 #include "inkPainterView.h"
-#include "SetSizeDig.h"
+//#include "SetSizeDig.h"
+#include "SettingSizeDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -43,6 +44,7 @@ END_MESSAGE_MAP()
 // CinkPainterView construction/destruction
 
 CinkPainterView::CinkPainterView()
+	: m_nLineWidth(0)
 {
 	// TODO: add construction code here
 
@@ -135,7 +137,7 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	//定义画笔并选择  
 	CDC *p = GetDC();
-	CPen pen(PS_SOLID, 4, RGB(255, 0, 0));//可以改pen的设置
+	CPen pen(PS_SOLID, m_nLineWidth, RGB(255, 0, 0));//可以改pen的设置
 	p->SelectObject(pen);
 
 	//鼠标按下进行绘制  
@@ -144,14 +146,19 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 		p->LineTo(point);
 		m_point = point;
 	}
+	ReleaseDC(p);
 	CView::OnMouseMove(nFlags, point);
 }
 //画笔大小设置
 void CinkPainterView::OnSettingSize()
 {
 	//模态对话框 点击OK后对话框被销毁
-	CSetSizeDig sizeDig;
-	sizeDig.DoModal();
+	//CSetSizeDig sizeDig;
+	CSettingSizeDlg sizeDlg;
+	if (IDOK == sizeDlg.DoModal())
+	{
+		m_nLineWidth = sizeDlg.m_nLineWidth;
+	}
 }
 //画笔颜色设置
 void CinkPainterView::OnSettingColor()
