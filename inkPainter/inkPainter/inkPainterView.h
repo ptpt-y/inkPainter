@@ -55,6 +55,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	unsigned int m_nLineWidth;
+	COLORREF m_clr;
 };
 
 #ifndef _DEBUG  // debug version in inkPainterView.cpp

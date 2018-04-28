@@ -13,6 +13,7 @@
 #include "inkPainterView.h"
 //#include "SetSizeDig.h"
 #include "SettingSizeDlg.h"
+#include "SettingColorDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -47,7 +48,7 @@ CinkPainterView::CinkPainterView()
 	: m_nLineWidth(0)
 {
 	// TODO: add construction code here
-
+	m_clr = RGB(255, 0, 0);
 }
 
 CinkPainterView::~CinkPainterView()
@@ -137,7 +138,7 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	//定义画笔并选择  
 	CDC *p = GetDC();
-	CPen pen(PS_SOLID, m_nLineWidth, RGB(255, 0, 0));//可以改pen的设置
+	CPen pen(PS_SOLID, m_nLineWidth, m_clr);//可以改pen的设置
 	p->SelectObject(pen);
 
 	//鼠标按下进行绘制  
@@ -155,6 +156,7 @@ void CinkPainterView::OnSettingSize()
 	//模态对话框 点击OK后对话框被销毁
 	//CSetSizeDig sizeDig;
 	CSettingSizeDlg sizeDlg;
+	sizeDlg.m_nLineWidth = m_nLineWidth;
 	if (IDOK == sizeDlg.DoModal())
 	{
 		m_nLineWidth = sizeDlg.m_nLineWidth;
@@ -163,11 +165,18 @@ void CinkPainterView::OnSettingSize()
 //画笔颜色设置
 void CinkPainterView::OnSettingColor()
 {
+	CColorDialog dlg;
+	dlg.m_cc.Flags |= CC_RGBINIT|CC_FULLOPEN;
+	dlg.m_cc.rgbResult = m_clr;
+	if(IDOK == dlg.DoModal())
+	{
+		m_clr = dlg.m_cc.rgbResult;
+	}
+
 	/*非模态对话框（指针or设为成员）点击OK后对话框仅被覆盖(响应基类的OnOK)
 	CSetSizeDig* dlg = new CSetSizeDig();
 	dlg->Create(IDD_DIALOG1,this);
 	dlg->ShowWindow(SW_SHOW);*/
-	AfxMessageBox(L"set color ");
 }
 
 //画笔笔刷设置
