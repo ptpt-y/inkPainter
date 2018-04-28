@@ -194,7 +194,6 @@
     <ClInclude Include="OutputWnd.h" />
     <ClInclude Include="PropertiesWnd.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="SetSizeDig.h" />
     <ClInclude Include="SettingColorDlg.h" />
     <ClInclude Include="SettingSizeDlg.h" />
     <ClInclude Include="stdafx.h" />
@@ -210,7 +209,6 @@
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="OutputWnd.cpp" />
     <ClCompile Include="PropertiesWnd.cpp" />
-    <ClCompile Include="SetSizeDig.cpp" />
     <ClCompile Include="SettingColorDlg.cpp" />
     <ClCompile Include="SettingSizeDlg.cpp" />
     <ClCompile Include="stdafx.cpp">

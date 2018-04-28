@@ -11,7 +11,6 @@
 
 #include "inkPainterDoc.h"
 #include "inkPainterView.h"
-//#include "SetSizeDig.h"
 #include "SettingSizeDlg.h"
 #include "SettingColorDlg.h"
 
@@ -150,11 +149,11 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 	ReleaseDC(p);
 	CView::OnMouseMove(nFlags, point);
 }
+
 //画笔大小设置
 void CinkPainterView::OnSettingSize()
 {
 	//模态对话框 点击OK后对话框被销毁
-	//CSetSizeDig sizeDig;
 	CSettingSizeDlg sizeDlg;
 	sizeDlg.m_nLineWidth = m_nLineWidth;
 	if (IDOK == sizeDlg.DoModal())
@@ -162,6 +161,7 @@ void CinkPainterView::OnSettingSize()
 		m_nLineWidth = sizeDlg.m_nLineWidth;
 	}
 }
+
 //画笔颜色设置
 void CinkPainterView::OnSettingColor()
 {
@@ -172,26 +172,17 @@ void CinkPainterView::OnSettingColor()
 	{
 		m_clr = dlg.m_cc.rgbResult;
 	}
-
-	/*非模态对话框（指针or设为成员）点击OK后对话框仅被覆盖(响应基类的OnOK)
-	CSetSizeDig* dlg = new CSetSizeDig();
-	dlg->Create(IDD_DIALOG1,this);
-	dlg->ShowWindow(SW_SHOW);*/
 }
 
 //画笔笔刷设置
 void CinkPainterView::OnSettingBrush()
 {
-	//CDialog* dlg = new CDialog;
-	//dlg->Create("set size");
 	AfxMessageBox(L"set brush ");
 }
 
 //画笔轻重 不透明度 设置
 void CinkPainterView::OnSettingOpacity()
 {
-	//CDialog* dlg = new CDialog;
-	//dlg->Create("set size");
 	AfxMessageBox(L"set opacity ");
 }
 // CinkPainterView diagnostics
