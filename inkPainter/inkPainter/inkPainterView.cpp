@@ -232,8 +232,12 @@ void CinkPainterView::OnSave()
 															   //Bmp.screenShot(rect,0,0,"ScreenPic.bmp");  
 	USES_CONVERSION;
 	char* p = T2A(m_StrDBPath);
+	CString showPath = _T("Save Success!\n\nPath: ")+m_StrDBPath;
+	AfxMessageBox(showPath);
+
 
 
 	////////////////主要实现函数  
 	Bmp.screenShot(rect, 0, 0, p); ///第二第三个参数没用
+
 }

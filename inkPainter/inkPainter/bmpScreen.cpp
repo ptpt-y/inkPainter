@@ -93,7 +93,6 @@ void bmpScreen::screenShot(CRect rect, int left, int top, char *name)
 	delete[] p;
 	if (fp!=NULL)
 		fclose(fp);
-	//fclose(fp);
 	memDC.SelectObject(oldmemBitmap);
 	memDC.DeleteDC();
 
