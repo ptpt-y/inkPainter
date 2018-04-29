@@ -60,6 +60,9 @@
     <ClInclude Include="SettingColorDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bmpScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="inkPainter.cpp">
@@ -96,6 +99,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SettingColorDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bmpScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

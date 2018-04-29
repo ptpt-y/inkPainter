@@ -380,6 +380,7 @@ BEGIN
         MENUITEM "Brush",                       ID_SETTINGS_BRUSH
         MENUITEM "Opacity",                     ID_SETTINGS_OPACITY
     END
+    MENUITEM "Save",                        ID_SAVE
     POPUP "&Help"
     BEGIN
         MENUITEM "&About inkPainter...",        ID_APP_ABOUT
