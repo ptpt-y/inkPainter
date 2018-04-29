@@ -56,6 +56,10 @@ protected:
 private:
 	unsigned int m_nLineWidth;
 	COLORREF m_clr;
+public:
+	afx_msg void OnSave();
+	CString m_StrExePath;
+	CString m_StrDBPath;
 };
 
 #ifndef _DEBUG  // debug version in inkPainterView.cpp

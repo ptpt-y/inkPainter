@@ -13,6 +13,7 @@
 #include "inkPainterView.h"
 #include "SettingSizeDlg.h"
 #include "SettingColorDlg.h"
+#include "bmpScreen.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -39,12 +40,15 @@ BEGIN_MESSAGE_MAP(CinkPainterView, CView)
 	ON_COMMAND(ID_SETTINGS_COLOR, &CinkPainterView::OnSettingColor)
 	ON_COMMAND(ID_SETTINGS_BRUSH, &CinkPainterView::OnSettingBrush)
 	ON_COMMAND(ID_SETTINGS_OPACITY, &CinkPainterView::OnSettingOpacity)
+	ON_COMMAND(ID_SAVE, &CinkPainterView::OnSave)
 END_MESSAGE_MAP()
 
 // CinkPainterView construction/destruction
 
 CinkPainterView::CinkPainterView()
 	: m_nLineWidth(0)
+	, m_StrExePath(_T(""))
+	, m_StrDBPath(_T(""))
 {
 	// TODO: add construction code here
 	m_clr = RGB(255, 0, 0);
@@ -207,3 +211,29 @@ CinkPainterDoc* CinkPainterView::GetDocument() const // non-debug version is inl
 
 
 // CinkPainterView message handlers
+
+
+void CinkPainterView::OnSave()
+{
+	// TODO: 在此添加命令处理程序代码
+	bmpScreen Bmp;
+	CRect rect;
+	GetClientRect(&rect);
+	ClientToScreen(&rect);//P:得到客户区转化为相对屏幕的坐标系  
+
+						  ////////////////////////确定一个文件保存位置  
+	CString  sPath;
+	GetModuleFileName(NULL, sPath.GetBufferSetLength(MAX_PATH + 1), MAX_PATH);//得到程序的路径  
+	sPath.ReleaseBuffer();
+	int nPos = sPath.ReverseFind('\\');
+	m_StrExePath = sPath.Left(nPos);
+	sPath = m_StrExePath;
+	m_StrDBPath = sPath + _T("\\SavePicture\\OurDrawPic.bmp");  //得到程序目录下的数据库的完整路径  
+															   //Bmp.screenShot(rect,0,0,"ScreenPic.bmp");  
+	USES_CONVERSION;
+	char* p = T2A(m_StrDBPath);
+
+
+	////////////////主要实现函数  
+	Bmp.screenShot(rect, 0, 0, p); ///第二第三个参数没用
+}
