@@ -14,6 +14,7 @@
 #include "SettingSizeDlg.h"
 #include "SettingColorDlg.h"
 #include "bmpScreen.h"
+#include "windows.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -237,6 +238,7 @@ void CinkPainterView::OnSave()
 
 	////////////////主要实现函数  
 	Bmp.screenShot(rect, 0, 0, p); ///第二第三个参数没用
+	Sleep(10);
 	CString showPath = _T("Save Success!\n\nPath: ") + m_StrDBPath;
 	AfxMessageBox(showPath);
 
