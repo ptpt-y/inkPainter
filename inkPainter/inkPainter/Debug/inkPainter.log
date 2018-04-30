@@ -1,5 +1,34 @@
 ﻿  inkPainterView.cpp
 d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
   c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(189): warning C4305: “初始化”: 从“double”到“float”截断
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(192): warning C4244: “初始化”: 从“LONG”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(193): warning C4244: “初始化”: 从“LONG”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(194): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(202): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(203): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(207): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(208): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(212): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(213): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(232): warning C4305: “*=”: 从“double”到“float”截断
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(238): warning C4305: “-=”: 从“double”到“GLfloat”截断
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(239): warning C4305: “-=”: 从“double”到“GLfloat”截断
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(240): warning C4305: “-=”: 从“double”到“GLfloat”截断
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(254): warning C4244: “=”: 从“unsigned int”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(329): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(548): warning C4244: “参数”: 从“int”转换到“GLfloat”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(549): warning C4244: “参数”: 从“int”转换到“GLfloat”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(550): warning C4244: “参数”: 从“int”转换到“GLfloat”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(551): warning C4244: “参数”: 从“int”转换到“GLfloat”，可能丢失数据
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(630): warning C4305: “*=”: 从“double”到“float”截断
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(631): warning C4305: “-=”: 从“double”到“GLfloat”截断
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(632): warning C4305: “-=”: 从“double”到“GLfloat”截断
+d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(633): warning C4305: “-=”: 从“double”到“GLfloat”截断
+  inkPainter.cpp
+d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
+  c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
+  正在跳过...(未检测到相关更改)
+  inkPainterDoc.cpp
   inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.exe
   inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.pdb (Partial PDB)

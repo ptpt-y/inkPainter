@@ -14,6 +14,7 @@
 // See inkPainter.cpp for the implementation of this class
 //
 
+
 class CinkPainterApp : public CWinAppEx
 {
 public:

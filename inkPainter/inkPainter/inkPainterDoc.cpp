@@ -8,7 +8,6 @@
 #ifndef SHARED_HANDLERS
 #include "inkPainter.h"
 #endif
-
 #include "inkPainterDoc.h"
 
 #include <propkey.h>
@@ -17,6 +16,7 @@
 #define new DEBUG_NEW
 #endif
 
+extern CView* g_pView;
 // CinkPainterDoc
 
 IMPLEMENT_DYNCREATE(CinkPainterDoc, CDocument)
@@ -28,6 +28,9 @@ END_MESSAGE_MAP()
 // CinkPainterDoc construction/destruction
 
 CinkPainterDoc::CinkPainterDoc()
+	:  m_bImageChanged(TRUE)
+	, m_ImageWidth(1024)
+	, m_ImageHeight(1024)
 {
 	// TODO: add one-time construction code here
 
@@ -44,7 +47,9 @@ BOOL CinkPainterDoc::OnNewDocument()
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
-
+	m_bImageChanged = true;
+	memset(m_pImage, 0, 1024 * 1024 * 3);       //3???
+	g_pView->Invalidate(0);
 	return TRUE;
 }
 
@@ -135,3 +140,23 @@ void CinkPainterDoc::Dump(CDumpContext& dc) const
 
 
 // CinkPainterDoc commands
+
+
+// 打开文件
+BOOL CinkPainterDoc::nOpenDocument(LPCTSTR lpszPathName)
+{
+	if (!CDocument::OnOpenDocument(lpszPathName))
+		return FALSE;
+
+	m_bImageChanged = true;
+	m_TextureImage = auxDIBImageLoad(lpszPathName);
+		memcpy(m_pImage,m_TextureImage->data,m_TextureImage->sizeX*m_TextureImage->sizeY*3);
+	for (int i = 0; i<m_TextureImage->sizeX*m_TextureImage->sizeY * 3; i++)          //纹理  *3
+	{
+		m_pImage[i] = 255 - m_TextureImage->data[i];    //255
+	}
+	m_ImageWidth = m_TextureImage->sizeX;
+	m_ImageHeight = m_TextureImage->sizeY;
+	g_pView->Invalidate(0);
+	return TRUE;
+}

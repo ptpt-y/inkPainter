@@ -13,7 +13,7 @@ IMPLEMENT_DYNAMIC(CSettingSizeDlg, CDialogEx)
 
 CSettingSizeDlg::CSettingSizeDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_SETTING_SIZE, pParent)
-	, m_nLineWidth(0)
+	, m_nLineWidth(10)
 {
 
 }
