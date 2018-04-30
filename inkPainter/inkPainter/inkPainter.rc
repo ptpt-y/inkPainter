@@ -87,7 +87,7 @@ CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "确定",IDOK,199,155,50,14
-    PUSHBUTTON      "取消",IDCANCEL,253,155,50,14
+    PUSHBUTTON      "取消",2,253,155,50,14
 END
 
 
@@ -132,6 +132,14 @@ IDD_SETTING_COLOR AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "D:\\inkPainter\\inkPainter\\Debug\\SavePicture\\OurDrawPic.bmp"
 
 #endif    // 中文(简体，中国) resources
 /////////////////////////////////////////////////////////////////////////////

@@ -6,6 +6,7 @@
 #include <gl\gl.h>
 #include <gl\glu.h>
 #include <gl\glaux.h>
+#include "afxwin.h"
 #pragma comment( lib, "opengl32.lib")
 #pragma comment( lib, "glu32.lib")
 #pragma comment( lib, "glaux.lib")
@@ -39,8 +40,8 @@ public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
-	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
+	//virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
+	//virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
 // Implementation
 public:
@@ -137,6 +138,14 @@ public:
 																					
 	void Spread();	// À©É¢Ð§¹û	
 
+private:
+	// ¼æÈÝDC
+	CDC m_dcCompatible;
+public:
+	// ¼æÈÝÎ»Í¼
+	CBitmap bitmap;
+	CBitmap getBitmap();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };
 
 #ifndef _DEBUG  // debug version in inkPainterView.cpp

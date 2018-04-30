@@ -28,7 +28,7 @@ END_MESSAGE_MAP()
 // CinkPainterDoc construction/destruction
 
 CinkPainterDoc::CinkPainterDoc()
-	:  m_bImageChanged(TRUE)
+	:  m_bImageChanged(FALSE)
 	, m_ImageWidth(1024)
 	, m_ImageHeight(1024)
 {
@@ -44,12 +44,13 @@ BOOL CinkPainterDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-
+	//AfxMessageBox(L"Open ");
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
 	m_bImageChanged = true;
 	memset(m_pImage, 0, 1024 * 1024 * 3);       //3???
-	g_pView->Invalidate(0);
+	//g_pView->Invalidate(0);
+	g_pView->InvalidateRect(CRect(0, 0, 1, 1));
 	return TRUE;
 }
 
@@ -147,8 +148,8 @@ BOOL CinkPainterDoc::nOpenDocument(LPCTSTR lpszPathName)
 {
 	if (!CDocument::OnOpenDocument(lpszPathName))
 		return FALSE;
-
-	m_bImageChanged = true;
+	
+	m_bImageChanged = false;
 	m_TextureImage = auxDIBImageLoad(lpszPathName);
 		memcpy(m_pImage,m_TextureImage->data,m_TextureImage->sizeX*m_TextureImage->sizeY*3);
 	for (int i = 0; i<m_TextureImage->sizeX*m_TextureImage->sizeY * 3; i++)          //ÎÆÀí  *3
@@ -157,6 +158,8 @@ BOOL CinkPainterDoc::nOpenDocument(LPCTSTR lpszPathName)
 	}
 	m_ImageWidth = m_TextureImage->sizeX;
 	m_ImageHeight = m_TextureImage->sizeY;
-	g_pView->Invalidate(0);
+	//g_pView->Invalidate(0);
+	g_pView->InvalidateRect(CRect(0,0,1,1));
+
 	return TRUE;
 }

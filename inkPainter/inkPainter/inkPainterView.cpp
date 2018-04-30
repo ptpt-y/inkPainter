@@ -51,12 +51,13 @@ BEGIN_MESSAGE_MAP(CinkPainterView, CView)
 	ON_COMMAND(ID_SAVE, &CinkPainterView::OnSave)
 
 
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 // CinkPainterView construction/destruction
 BYTE tempdata[1024 * 1024 * 3];//缓存 加载纹理时用
 CinkPainterView::CinkPainterView()
-	: m_nLineWidth(10)
+	: m_nLineWidth(8)
 	, m_StrExePath(_T(""))
 	, m_StrDBPath(_T(""))
 	, m_bBrush(TRUE)
@@ -110,16 +111,68 @@ void CinkPainterView::OnDraw(CDC* pDC)
 	//}
 	//===================================
 
+
 	if (pDoc->m_bImageChanged)
 	{
-		glBindTexture(GL_TEXTURE_2D, m_texture[1]);//将生成的纹理名称绑定到指定的纹理上
-		m_ImageWidth = pDoc->m_ImageWidth;
-		m_ImageHeight = pDoc->m_ImageHeight;
+		//就是这里!!!!
+		//要在这里把目前的视口内容存下来再重新加载到视口
+		//AfxMessageBox(L"!!! ");
 
-		//将pDoc->m_pImage指针指向的图片的部分作为2D纹理
-		//在程序中只要不断改变指针指向的图片就能自动更新纹理
-		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_ImageWidth, m_ImageHeight, GL_RGB, GL_UNSIGNED_BYTE, pDoc->m_pImage);
-		pDoc->m_bImageChanged = FALSE;
+			if (!m_dcCompatible.m_hDC)//判断是否已经创建兼容DC
+	{
+
+		m_dcCompatible.CreateCompatibleDC(pDC);
+		CRect rect;
+		GetClientRect(&rect);//获取当前客户区域的大小
+							 //CBitmap bitmap;
+		bitmap.CreateCompatibleBitmap(pDC, rect.Width(), rect.Width());
+		m_dcCompatible.SelectObject(&bitmap);//给兼容dc选择一个兼容位图
+		m_dcCompatible.BitBlt(0, 0, rect.Width(), rect.Height(), pDC, 0, 0, SRCCOPY);
+	}
+
+		//CRect rect;
+		//GetClientRect(&rect);//获取当前客户区域的大小
+		////CBitmap bitmap;
+		////bitmap.CreateCompatibleBitmap(pDC, rect.Width(), rect.Width());
+		////m_dcCompatible.SelectObject(&bitmap);//给兼容dc选择一个兼容位图
+		////m_dcCompatible.BitBlt(0, 0, rect.Width(), rect.Height(), &dc, 0, 0, SRCCOPY);
+		//pDC->BitBlt(0, 0, rect.Width(), rect.Height(), &m_dcCompatible, 0, 0, SRCCOPY);
+		////AfxMessageBox(L"???");
+
+
+
+		////glBindTexture(GL_TEXTURE_2D, m_texture[1]);//将生成的纹理名称绑定到指定的纹理上
+		////m_ImageWidth = pDoc->m_ImageWidth;
+		////m_ImageHeight = pDoc->m_ImageHeight;
+
+		////将pDoc->m_pImage指针指向的图片的部分作为2D纹理
+		////在程序中只要不断改变指针指向的图片就能自动更新纹理
+		////glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_ImageWidth, m_ImageHeight, GL_RGB, GL_UNSIGNED_BYTE, pDoc->m_pImage);
+		//pDoc->m_bImageChanged = FALSE;
+
+		//===========================可能可行但实在是太浪费内存了跑不动============
+		//OnSave();
+		//CRect    rect;     //客户区域
+		//CDC*    pDC = GetDC();//获取视图的设备文本指针
+		//CDC    dcComp; //声明内存设备文本对象
+		//			   //得到客户区尺寸
+		//GetClientRect(&rect);
+		////组装m_MemBitmap对象
+		//bitmap.CreateCompatibleBitmap(pDC, rect.Width(), rect.Width());
+		//bitmap.m_hObject = (HBITMAP)::LoadImage(NULL, _T("Material/texture.bmp"), IMAGE_BITMAP, 500, 400, LR_LOADFROMFILE);
+		////bitmap.LoadImage("Material/texture.bmp");
+		////创建内存设备文本对象
+		//dcComp.CreateCompatibleDC(pDC);
+		////内存设备环境将位图对象选入
+		//dcComp.SelectObject(&bitmap);
+		////用位传输函数显示出来
+		//pDC->BitBlt(0, 0, rect.Width(), rect.Height(), &dcComp, 0, 0, SRCCOPY);
+		////析构内存设备文本对象
+		//dcComp.DeleteDC();
+		////释放设备文本指针
+		//ReleaseDC(pDC);
+		//DrawWithOpenGL();
+
 	}
 	DrawWithOpenGL();
 	SwapBuffers(m_hDC);
@@ -143,15 +196,15 @@ BOOL CinkPainterView::OnPreparePrinting(CPrintInfo* pInfo)
 	return DoPreparePrinting(pInfo);
 }
 
-void CinkPainterView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
-{
-	// TODO: add extra initialization before printing
-}
-
-void CinkPainterView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
-{
-	// TODO: add cleanup after printing
-}
+//void CinkPainterView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
+//{
+//	// TODO: add extra initialization before printing
+//}
+//
+//void CinkPainterView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
+//{
+//	// TODO: add cleanup after printing
+//}
 
 void CinkPainterView::OnRButtonUp(UINT /* nFlags */, CPoint point)
 {
@@ -177,7 +230,32 @@ void CinkPainterView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CinkPainterView::OnLButtonUp(UINT nFlags, CPoint point)
 {
+	CClientDC dc(this);
+
+	CinkPainterDoc* pDoc = GetDocument();
 	m_LeftButtonDown = FALSE;
+	pDoc->m_bImageChanged = TRUE;
+
+	//if (!m_dcCompatible.m_hDC)//判断是否已经创建兼容DC
+	//{
+	//	//AfxMessageBox(L"set brush ");
+
+	//	m_dcCompatible.CreateCompatibleDC(&dc);
+	//	CRect rect;
+	//	GetClientRect(&rect);//获取当前客户区域的大小
+	//						 //CBitmap bitmap;
+	//	bitmap.CreateCompatibleBitmap(&dc, rect.Width(), rect.Width());
+	//	m_dcCompatible.SelectObject(&bitmap);//给兼容dc选择一个兼容位图
+	//	m_dcCompatible.BitBlt(0, 0, rect.Width(), rect.Height(), &dc, 0, 0, SRCCOPY);
+	//}
+		//CRect rect;
+		//GetClientRect(&rect);//获取当前客户区域的大小
+		////CBitmap bitmap;
+		//bitmap.CreateCompatibleBitmap(&dc, rect.Width(), rect.Width());
+		//m_dcCompatible.SelectObject(&bitmap);//给兼容dc选择一个兼容位图
+		//m_dcCompatible.BitBlt(0,0,rect.Width(),rect.Height(),&dc,0,0,SRCCOPY);
+	
+
 	CView::OnLButtonUp(nFlags, point);
 }
 
@@ -196,22 +274,13 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 		for (int i = 0; i<int(l) + 1; i++)
 		{
 			int pNum = m_iPointNum % N;
-			//根据mode值，通过改变点的位置偏差大小，形成渲染效果
-			if (mode == 0)
-			{
-				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*10.2;
-				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)*10.2;
-			}
-			else if (mode == 1)
-			{
-				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*10.2;
-				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)*3.2;
-			}
-			else if (mode == 2)
-			{
-				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*5.2;
-				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)*3.2;
-			}
+
+			//m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*3.2;
+			//m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)*3.2;
+
+			m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i);
+			m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i);
+
 			m_ColorPoint[pNum].size = m_fPointSize;
 
 			//for (int j = 0; j < 3; j++)//设置颜色
@@ -226,18 +295,17 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 
 			m_ColorPoint[pNum].life = 40;
 
-			//画笔粗细
-
-			if (thinkness==0)
-				m_ColorPoint[pNum].size *= 1.1;			
-			else if (thinkness==1)
-				m_ColorPoint[pNum].size *= 2.0;			
-			else if (thinkness==2)
+			//画笔晕染的粗细
+			if (thinkness == 0)
+				m_ColorPoint[pNum].size *= 1.2;
+			else if (thinkness ==1)
+				m_ColorPoint[pNum].size *= 2.0;
+			else if (thinkness == 2)
 				m_ColorPoint[pNum].size *= 3.0;
 
-			m_ColorPoint[pNum].color[0] -= 0.1;                     //改变点的颜色，使墨色较浅         
-			m_ColorPoint[pNum].color[1] -= 0.1;
-			m_ColorPoint[pNum].color[2] -= 0.1;
+			m_ColorPoint[pNum].color[0] -= 10;                     //改变点的颜色，使墨色较浅         
+			m_ColorPoint[pNum].color[1] -= 10;
+			m_ColorPoint[pNum].color[2] -= 10;
 
 			m_iPointNum++;
 
@@ -250,10 +318,10 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 			m_fPointSize -= (l - 5) / 10;
 
 			//控制点大小的范围	
-			if (m_fPointSize>m_nLineWidth)              
+			if (m_fPointSize > m_nLineWidth)
 				m_fPointSize = m_nLineWidth;
-			if (m_fPointSize<3)
-				m_fPointSize = 3;
+			if (m_fPointSize < 2)
+				m_fPointSize = 2;
 
 		}
 	}
@@ -269,7 +337,7 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 void CinkPainterView::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
-	
+
 	m_iWindowWidth = cx;
 	m_iWindowHeight = cy;
 	if (m_iWindowWidth < 10)
@@ -279,7 +347,7 @@ void CinkPainterView::OnSize(UINT nType, int cx, int cy)
 	glViewport(0, 0, m_iWindowWidth, m_iWindowHeight);//设定视口大小
 	glMatrixMode(GL_PROJECTION);//切换到投影矩阵
 	glLoadIdentity();
-	glOrtho(-m_iWindowWidth / 2, m_iWindowWidth / 2, -m_iWindowHeight / 2, m_iWindowHeight / 2,-100,100);
+	glOrtho(-m_iWindowWidth / 2, m_iWindowWidth / 2, -m_iWindowHeight / 2, m_iWindowHeight / 2, -100, 100);
 	glMatrixMode(GL_MODELVIEW);//切换到模型视口矩阵
 
 }
@@ -302,7 +370,7 @@ int CinkPainterView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return 0;
 
 	LoadTextures();//载入纹理
-	SetTimer(0, 10, NULL);//定时器
+	SetTimer(0, 1, NULL);//定时器
 
 	return 0;
 }
@@ -326,8 +394,8 @@ void CinkPainterView::OnTimer(UINT nIDEvent)
 {
 	if (!m_LeftButtonDown)
 	{
-		m_fPointSize -= (1 + 0.3*m_fPointSize);//每次刷新时笔触大小发生变化
-		if (m_fPointSize<0)
+		m_fPointSize -= ( 0.3*m_fPointSize);//每次刷新时笔触大小发生变化
+		if (m_fPointSize < 0)
 			m_fPointSize = 0;
 	}
 
@@ -335,8 +403,8 @@ void CinkPainterView::OnTimer(UINT nIDEvent)
 	{
 		Spread();
 	}
-
-	Invalidate(0);
+	InvalidateRect(CRect(0, 0, 1, 1));
+	//Invalidate(0);
 	CView::OnTimer(nIDEvent);
 
 }
@@ -357,9 +425,9 @@ void CinkPainterView::OnSettingSize()
 void CinkPainterView::OnSettingColor()
 {
 	CColorDialog dlg;
-	dlg.m_cc.Flags |= CC_RGBINIT|CC_FULLOPEN;
+	dlg.m_cc.Flags |= CC_RGBINIT | CC_FULLOPEN;
 	dlg.m_cc.rgbResult = m_clr;
-	if(IDOK == dlg.DoModal())
+	if (IDOK == dlg.DoModal())
 	{
 		m_clr = dlg.m_cc.rgbResult;
 	}
@@ -436,9 +504,11 @@ void CinkPainterView::LoadTextures()
 {
 	AUX_RGBImageRec *TextureImage;
 	TextureImage = auxDIBImageLoad(L"Material/texture.bmp");//载入bmp图
+	//TextureImage = auxDIBImageLoad(L"Material/texture2.bmp");//载入bmp图
+
 	glGenTextures(1, &m_texture[0]);// 为第0个位图创建纹理
 	glBindTexture(GL_TEXTURE_2D, m_texture[0]);//将调用glGenTextures函数生成的纹理的名字绑定到对应的目标纹理上
-	gluBuild2DMipmaps(GL_TEXTURE_2D,  3,
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
 		TextureImage->sizeX, TextureImage->sizeY,
 		GL_RGB, GL_UNSIGNED_BYTE, TextureImage->data);//将载入的位图文件(*.bmp)转换成纹理贴图
 	//线形滤波 使用线性插值计算两个图像中的每个图像的纹素值，然后在两个图像间进行线性插值
@@ -455,6 +525,7 @@ void CinkPainterView::LoadTextures()
 		}
 		free(TextureImage);
 	}
+	//AfxMessageBox(L"test");
 	TextureImage = auxDIBImageLoad(L"Material/Picture1.bmp");//载入bmp图
 	glGenTextures(1, &m_texture[1]);
 	glBindTexture(GL_TEXTURE_2D, m_texture[1]);
@@ -462,8 +533,8 @@ void CinkPainterView::LoadTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-	gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 
-		1024, 1024, GL_RGB, 
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
+		1024, 1024, GL_RGB,
 		GL_UNSIGNED_BYTE, tempdata);//定义分辨率逐渐减小到2*2的多重图像，并将原图缩放到最接近2的幂次方的尺寸上
 
 }
@@ -474,7 +545,14 @@ void CinkPainterView::DrawWithOpenGL()
 {
 	int pNum;//点的数目
 	glClearColor(0, 0, 0, 0);//背景颜色
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glClearColor(1, 1, 1, 1);//背景颜色
+
+	//glClear( GL_DEPTH_BUFFER_BIT);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	CRect rect;
+	GetClientRect(&rect);//获取当前客户区域的大小
+						 CDC*    pDC = GetDC();//获取视图的设备文本指针
+	m_dcCompatible.BitBlt(0, 0, rect.Width(), rect.Height(), pDC, 0, 0, SRCCOPY);
 	glLoadIdentity();
 	glEnable(GL_TEXTURE_2D);//启用二维纹理映射
 
@@ -488,16 +566,16 @@ void CinkPainterView::DrawWithOpenGL()
 		glBlendFunc(GL_SRC_COLOR, GL_ONE_MINUS_SRC_COLOR);//第二种混合模式
 
 	glBindTexture(GL_TEXTURE_2D, m_texture[0]);//为接下来的画笔添加纹理
-	
+
 	glBegin(GL_QUADS);//四边形
 	//for (int i = m_iDrawStartPoint; i > 0; i++)
-	for (int i = m_iDrawStartPoint; i<m_iSimStartPoint; i++)
+	for (int i = m_iDrawStartPoint; i < m_iSimStartPoint; i++)
 	{
 		pNum = i % N;//防止数组越界
 
 		//glColor3ub(GetRValue(m_clr), GetGValue(m_clr), GetBValue(m_clr));
-		glColor3ub(255-GetRValue(m_clr),255- GetGValue(m_clr), 255-GetBValue(m_clr));
-			//glColor3ub(m_ColorPoint[pNum].color[0], m_ColorPoint[pNum].color[1], m_ColorPoint[pNum].color[2]);
+		glColor3ub(255 - GetRValue(m_clr), 255 - GetGValue(m_clr), 255 - GetBValue(m_clr));
+		//glColor3ub(m_ColorPoint[pNum].color[0], m_ColorPoint[pNum].color[1], m_ColorPoint[pNum].color[2]);
 		glTexCoord2f(0, 0);//当前纹理坐标
 		glVertex2f(m_ColorPoint[pNum].x - m_ColorPoint[pNum].size, m_ColorPoint[pNum].y - m_ColorPoint[pNum].size);
 		glTexCoord2f(0, 1);
@@ -512,7 +590,7 @@ void CinkPainterView::DrawWithOpenGL()
 	//========================
 	//glBindTexture(GL_TEXTURE_2D, m_texture[1]);
 	//glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 512 - m_iWindowWidth / 2, 512 - m_iWindowHeight / 2, 0, 0, m_iWindowWidth, m_iWindowHeight);
-	//m_iDrawStartPoint = m_iSimStartPoint;
+	m_iDrawStartPoint = m_iSimStartPoint;
 	//Sleep(100);
 	//========================
 
@@ -522,7 +600,7 @@ void CinkPainterView::DrawWithOpenGL()
 
 	glBegin(GL_QUADS);//四边形
 	//for (int i = 0; i <m_iPointNum; i++)
-	for (int i = m_iSimStartPoint; i<m_iPointNum; i++)
+	for (int i = m_iSimStartPoint; i < m_iPointNum; i++)
 	{
 		pNum = i % N;//防止数组越界
 		glColor3ub(255 - GetRValue(m_clr), 255 - GetGValue(m_clr), 255 - GetBValue(m_clr));
@@ -541,16 +619,18 @@ void CinkPainterView::DrawWithOpenGL()
 
 	glDisable(GL_TEXTURE_2D);
 
-	glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);//反相
-	glColor3ub(255,255,255);//背景
-	//glColor3ub(0, 0, 0);//背景
-	glBegin(GL_QUADS);
-	glVertex2f(-m_iWindowWidth / 2, -m_iWindowHeight / 2);
-	glVertex2f(m_iWindowWidth / 2, -m_iWindowHeight / 2);
-	glVertex2f(m_iWindowWidth / 2, m_iWindowHeight / 2);
-	glVertex2f(-m_iWindowWidth / 2, m_iWindowHeight / 2);
-	glEnd();
-	glDisable(GL_BLEND);
+	//glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);//反相
+	//glBlendFunc(GL_ONE, GL_ONE);
+
+	//glColor3ub(255, 255, 255);//背景
+	////glColor3ub(0, 0, 0);//背景
+	//glBegin(GL_QUADS);
+	//glVertex2f(-m_iWindowWidth / 2, -m_iWindowHeight / 2);
+	//glVertex2f(m_iWindowWidth / 2, -m_iWindowHeight / 2);
+	//glVertex2f(m_iWindowWidth / 2, m_iWindowHeight / 2);
+	//glVertex2f(-m_iWindowWidth / 2, m_iWindowHeight / 2);
+	//glEnd();
+	//glDisable(GL_BLEND);
 }
 
 
@@ -635,4 +715,45 @@ void CinkPainterView::Spread()
 		if (m_ColorPoint[pNum].life <= 0)
 			m_iSimStartPoint = i + 1;
 	}
+}
+
+//
+//CBitmap CinkPainterView::getBitmap()
+//{
+//	//// TODO: 在此添加命令处理程序代码
+//	//bmpScreen Bmp;
+//	//CRect rect;
+//	//GetClientRect(&rect);
+//	//ClientToScreen(&rect);//P:得到客户区转化为相对屏幕的坐标系  
+//
+//	//					  ////////////////////////确定一个文件保存位置  
+//	//CString  sPath;
+//	//GetModuleFileName(NULL, sPath.GetBufferSetLength(MAX_PATH + 1), MAX_PATH);//得到程序的路径  
+//	//sPath.ReleaseBuffer();
+//	//int nPos = sPath.ReverseFind('\\');
+//	//m_StrExePath = sPath.Left(nPos);
+//	//sPath = m_StrExePath;
+//	//m_StrDBPath = sPath + _T("\\SavePicture\\OurDrawPic.bmp");  //得到程序目录下的数据库的完整路径  
+//	//															//Bmp.screenShot(rect,0,0,"ScreenPic.bmp");  
+//	//USES_CONVERSION;
+//	//char* p = T2A(m_StrDBPath);
+//
+//
+//
+//	//////////////////主要实现函数  
+//	//Bmp.screenShot(rect, 0, 0, p); ///第二第三个参数没用
+//	//Sleep(10);
+//	//CString showPath = _T("Save Success!\n\nPath: ") + m_StrDBPath;
+//	//AfxMessageBox(showPath);
+//
+//	return 0;
+//}
+
+
+BOOL CinkPainterView::OnEraseBkgnd(CDC* pDC)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+
+	//return CView::OnEraseBkgnd(pDC);
+	return true;
 }

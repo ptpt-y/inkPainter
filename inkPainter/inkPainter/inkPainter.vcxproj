@@ -226,6 +226,7 @@
     <ResourceCompile Include="inkPainter.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\Debug\SavePicture\OurDrawPic.bmp" />
     <Image Include="res\classview.bmp" />
     <Image Include="res\classview_hc.bmp" />
     <Image Include="res\class_view.ico" />

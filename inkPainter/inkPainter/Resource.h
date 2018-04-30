@@ -87,6 +87,7 @@
 #define IDD_DIALOG1                     313
 #define IDD_SETTING_SIZE                313
 #define IDD_SETTING_COLOR               315
+#define IDB_BITMAP1                     319
 #define IDCANCEL                        1000
 #define IDC_LINE_WIDTH                  1001
 #define ID_SETTINGS_SIZE                32771
@@ -99,7 +100,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        319
+#define _APS_NEXT_RESOURCE_VALUE        320
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1002
 #define _APS_NEXT_SYMED_VALUE           310
