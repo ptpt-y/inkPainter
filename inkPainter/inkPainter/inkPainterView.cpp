@@ -186,7 +186,7 @@ void CinkPainterView::OnLButtonUp(UINT nFlags, CPoint point)
 //鼠标移动绘制图形  
 void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	float c = -0.8;//偏移量控制常数
+	float c = -0.4;//偏移量控制常数
 	if (m_fPointSize > 0)
 	{
 		float dx = (CPoint(m_MousePos - point)).x;//前后两个位置x的差值
@@ -252,8 +252,8 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 			//控制点大小的范围	
 			if (m_fPointSize>m_nLineWidth)              
 				m_fPointSize = m_nLineWidth;
-			if (m_fPointSize<2)
-				m_fPointSize = 2;
+			if (m_fPointSize<3)
+				m_fPointSize = 3;
 
 		}
 	}

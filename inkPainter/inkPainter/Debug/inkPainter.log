@@ -25,10 +25,5 @@ d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(630): warning C4305: “*
 d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(631): warning C4305: “-=”: 从“double”到“GLfloat”截断
 d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(632): warning C4305: “-=”: 从“double”到“GLfloat”截断
 d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(633): warning C4305: “-=”: 从“double”到“GLfloat”截断
-  inkPainter.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(90): warning C4005: “IDCANCEL”: 宏重定义
-  c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
-  正在跳过...(未检测到相关更改)
-  inkPainterDoc.cpp
   inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.exe
   inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.pdb (Partial PDB)
