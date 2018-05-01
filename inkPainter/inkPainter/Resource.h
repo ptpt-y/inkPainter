@@ -87,19 +87,16 @@
 #define IDD_DIALOG1                     313
 #define IDD_SETTING_SIZE                313
 #define IDD_SETTING_COLOR               315
-
 #define IDD_CTRL                        319
-#define IDCANCEL                        1000
-
 #define IDB_BITMAP1                     319
-//#define IDCANCEL                        1000
-
+#define IDCANCEL                        1000
 #define IDC_LINE_WIDTH                  1001
 #define IDC_EDIT1                       1002
 #define IDC_EDIT_CTRLSIZE               1002
 #define IDC__CTRL_SIZE                  1004
 #define IDC__CTRL_COLOR                 1006
 #define IDC_MFCCOLORBUTTON2             1007
+#define IDC_SPIN1                       1008
 #define ID_SETTINGS_SIZE                32771
 #define ID_SETTINGS_COLOR               32772
 #define ID_SETTINGS_BRUSH               32773
@@ -110,13 +107,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-
-//#define _APS_NEXT_RESOURCE_VALUE        324
-
 #define _APS_NEXT_RESOURCE_VALUE        320
-
 #define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1008
+#define _APS_NEXT_CONTROL_VALUE         1009
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

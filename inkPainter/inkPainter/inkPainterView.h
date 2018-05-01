@@ -80,9 +80,11 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 private:
-	//unsigned int m_nLineWidth;
-	//COLORREF m_clr;
-
+	//全局变量
+	/*---------------------------------------------------------------------------------------*/
+	//unsigned m_nLineWidth = 10;
+	//COLORREF m_clr = RGB(0, 0, 0);
+	/*---------------------------------------------------------------------------------------*/
 	BYTE r;
 	BYTE g;
 	BYTE b;
@@ -91,8 +93,6 @@ public:
 	afx_msg void OnSave();
 	CString m_StrExePath;
 	CString m_StrDBPath;
-
-	//unsigned int m_nLineWidth;//声明为全局变量
 
 	// 载入纹理
 	void LoadTextures();

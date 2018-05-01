@@ -52,15 +52,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWndEx::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	//CMyDockablePane 
-	if (!m_MyDockablePane.Create(L"控制面板", this, CRect(0, 50, 200, 465), TRUE, IDD_MyDPane, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
-	{
-		TRACE0("Failed to create LeftPane\n");
-		return -1;
-	}
-	m_MyDockablePane.EnableDocking(CBRS_ALIGN_ANY);
-	DockPane(&m_MyDockablePane);
-	
 
 	BOOL bNameValid;
 
@@ -118,6 +109,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Load menu item image (not placed on any standard toolbars):
 	CMFCToolBar::AddToolBarForImageCollection(IDR_MENU_IMAGES, theApp.m_bHiColorIcons ? IDB_MENU_IMAGES_24 : 0);
 
+	//CMyDockablePane 
+
+	if (!m_MyDockablePane.Create(L"控制面板", this, CRect(0, 50, 200, 465), TRUE, IDD_MyDPane, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("Failed to create LeftPane\n");
+		return -1;
+	}
+	m_MyDockablePane.EnableDocking(CBRS_ALIGN_ANY);
+	DockPane(&m_MyDockablePane);
+	
 	// create docking windows
 	if (!CreateDockingWindows())
 	{

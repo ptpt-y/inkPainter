@@ -1,6 +1,54 @@
 ﻿cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
+  ClassView.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
   CtrlPane.cpp
 c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
   C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  FileView.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  MainFrm.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  MyDockablePane.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  OutputWnd.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\Resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  PropertiesWnd.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\Resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  SettingColorDlg.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  SettingSizeDlg.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  inkPainter.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  inkPainterDoc.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+  inkPainterView.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+inkPainterView.cpp(276): warning C4305: 'initializing': truncation from 'double' to 'float'
+inkPainterView.cpp(279): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+inkPainterView.cpp(280): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+inkPainterView.cpp(281): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(287): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(288): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(300): warning C4305: '*=': truncation from 'double' to 'float'
+inkPainterView.cpp(322): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+inkPainterView.cpp(397): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(707): warning C4305: '*=': truncation from 'double' to 'float'
+inkPainterView.cpp(708): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+inkPainterView.cpp(709): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+inkPainterView.cpp(710): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.rh(1365): warning RC4005: 'IDCANCEL' : redefinition
+  
   inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.exe
   inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.pdb (Full PDB)

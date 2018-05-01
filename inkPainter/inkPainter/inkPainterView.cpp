@@ -22,7 +22,6 @@
 #define new DEBUG_NEW
 #endif
 
-
 unsigned m_nLineWidth = 10;
 COLORREF m_clr = RGB(0, 0, 0);
 
