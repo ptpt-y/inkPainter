@@ -1,0 +1,16 @@
+﻿cl : 命令行 warning D9007: “/Gm”需要“/Zi 或 /ZI”；选项被忽略
+  inkPainterView.cpp
+inkPainterView.cpp(182): warning C4305: “初始化”: 从“double”到“float”截断
+inkPainterView.cpp(185): warning C4244: “初始化”: 从“LONG”转换到“float”，可能丢失数据
+inkPainterView.cpp(186): warning C4244: “初始化”: 从“LONG”转换到“float”，可能丢失数据
+inkPainterView.cpp(187): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+inkPainterView.cpp(193): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+inkPainterView.cpp(194): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+inkPainterView.cpp(228): warning C4244: “=”: 从“unsigned int”转换到“float”，可能丢失数据
+inkPainterView.cpp(303): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
+inkPainterView.cpp(574): warning C4305: “*=”: 从“double”到“float”截断
+inkPainterView.cpp(575): warning C4305: “-=”: 从“double”到“GLfloat”截断
+inkPainterView.cpp(576): warning C4305: “-=”: 从“double”到“GLfloat”截断
+inkPainterView.cpp(577): warning C4305: “-=”: 从“double”到“GLfloat”截断
+  inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.exe
+  inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.pdb (Full PDB)
