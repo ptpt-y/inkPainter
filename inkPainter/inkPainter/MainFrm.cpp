@@ -110,15 +110,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CMFCToolBar::AddToolBarForImageCollection(IDR_MENU_IMAGES, theApp.m_bHiColorIcons ? IDB_MENU_IMAGES_24 : 0);
 
 	//CMyDockablePane 
-
 	if (!m_MyDockablePane.Create(L"¿ØÖÆÃæ°å", this, CRect(0, 50, 200, 465), TRUE, IDD_MyDPane, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
 	{
 		TRACE0("Failed to create LeftPane\n");
 		return -1;
 	}
-	m_MyDockablePane.EnableDocking(CBRS_ALIGN_ANY);
-	DockPane(&m_MyDockablePane);
-	
 	// create docking windows
 	if (!CreateDockingWindows())
 	{
@@ -126,8 +122,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 	}
 
+	m_MyDockablePane.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndFileView.EnableDocking(CBRS_ALIGN_ANY);
 	m_wndClassView.EnableDocking(CBRS_ALIGN_ANY);
+	DockPane(&m_MyDockablePane);
 	DockPane(&m_wndFileView);
 	CDockablePane* pTabbedBar = NULL;
 	m_wndClassView.AttachToTabWnd(&m_wndFileView, DM_SHOW, TRUE, &pTabbedBar);

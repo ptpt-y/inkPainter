@@ -11,8 +11,6 @@
 
 class CMainFrame : public CFrameWndEx
 {
-public:
-	CMyDockablePane  m_MyDockablePane;
 protected: // create from serialization only
 	CMainFrame();
 	DECLARE_DYNCREATE(CMainFrame)
@@ -45,6 +43,7 @@ protected:  // control bar embedded members
 	CClassView        m_wndClassView;
 	COutputWnd        m_wndOutput;
 	CPropertiesWnd    m_wndProperties;
+	CMyDockablePane   m_MyDockablePane;
 
 // Generated message map functions
 protected:

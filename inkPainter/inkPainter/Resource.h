@@ -96,7 +96,7 @@
 #define IDC__CTRL_SIZE                  1004
 #define IDC__CTRL_COLOR                 1006
 #define IDC_MFCCOLORBUTTON2             1007
-#define IDC_SPIN1                       1008
+#define IDC_COMBO1                      1009
 #define ID_SETTINGS_SIZE                32771
 #define ID_SETTINGS_COLOR               32772
 #define ID_SETTINGS_BRUSH               32773
@@ -109,7 +109,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        320
 #define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1009
+#define _APS_NEXT_CONTROL_VALUE         1010
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
