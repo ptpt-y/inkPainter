@@ -3,7 +3,7 @@
 //
 
 #pragma once
-
+//extern unsigned int m_nLineWidth;
 
 class CinkPainterView : public CView
 {
@@ -52,10 +52,12 @@ protected:
 	afx_msg void OnSettingColor();
 	afx_msg void OnSettingBrush();
 	afx_msg void OnSettingOpacity();
+
 	DECLARE_MESSAGE_MAP()
 private:
 	unsigned int m_nLineWidth;
 	COLORREF m_clr;
+
 public:
 	afx_msg void OnSave();
 	CString m_StrExePath;

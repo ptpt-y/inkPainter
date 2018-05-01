@@ -10,16 +10,19 @@
 #endif
 
 #include "inkPainterDoc.h"
+#include "CtrlPane.h"
 #include "inkPainterView.h"
 #include "SettingSizeDlg.h"
 #include "SettingColorDlg.h"
 #include "bmpScreen.h"
+#include "windows.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-
+unsigned m_nLineWidth = 10;
 // CinkPainterView
 
 IMPLEMENT_DYNCREATE(CinkPainterView, CView)
@@ -41,6 +44,7 @@ BEGIN_MESSAGE_MAP(CinkPainterView, CView)
 	ON_COMMAND(ID_SETTINGS_BRUSH, &CinkPainterView::OnSettingBrush)
 	ON_COMMAND(ID_SETTINGS_OPACITY, &CinkPainterView::OnSettingOpacity)
 	ON_COMMAND(ID_SAVE, &CinkPainterView::OnSave)
+
 END_MESSAGE_MAP()
 
 // CinkPainterView construction/destruction
@@ -52,6 +56,7 @@ CinkPainterView::CinkPainterView()
 {
 	// TODO: add construction code here
 	m_clr = RGB(255, 0, 0);
+
 }
 
 CinkPainterView::~CinkPainterView()
@@ -213,6 +218,7 @@ CinkPainterDoc* CinkPainterView::GetDocument() const // non-debug version is inl
 // CinkPainterView message handlers
 
 
+
 void CinkPainterView::OnSave()
 {
 	// TODO: 在此添加命令处理程序代码
@@ -232,12 +238,13 @@ void CinkPainterView::OnSave()
 															   //Bmp.screenShot(rect,0,0,"ScreenPic.bmp");  
 	USES_CONVERSION;
 	char* p = T2A(m_StrDBPath);
-	CString showPath = _T("Save Success!\n\nPath: ")+m_StrDBPath;
-	AfxMessageBox(showPath);
 
 
 
 	////////////////主要实现函数  
 	Bmp.screenShot(rect, 0, 0, p); ///第二第三个参数没用
+	CString showPath = _T("Save Success!\n\nPath: ") + m_StrDBPath;
+	Sleep(10);
+	AfxMessageBox(showPath);
 
 }

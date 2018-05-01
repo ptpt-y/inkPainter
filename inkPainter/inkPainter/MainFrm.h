@@ -7,10 +7,12 @@
 #include "ClassView.h"
 #include "OutputWnd.h"
 #include "PropertiesWnd.h"
+#include "MyDockablePane.h"
 
 class CMainFrame : public CFrameWndEx
 {
-	
+public:
+	CMyDockablePane  m_MyDockablePane;
 protected: // create from serialization only
 	CMainFrame();
 	DECLARE_DYNCREATE(CMainFrame)

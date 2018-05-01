@@ -1,5 +1,5 @@
 #pragma once
-
+#include "resource.h"
 
 // CSettingSizeDlg ¶Ô»°¿ò
 

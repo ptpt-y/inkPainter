@@ -22,6 +22,7 @@ public:
 
 // Overrides
 public:
+	unsigned int sizeOfPen;//全局变量
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
 

@@ -29,6 +29,8 @@ void CSettingSizeDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
+
+
 BEGIN_MESSAGE_MAP(CSettingSizeDlg, CDialogEx)
 END_MESSAGE_MAP()
 

@@ -187,11 +187,13 @@
   <ItemGroup>
     <ClInclude Include="bmpScreen.h" />
     <ClInclude Include="ClassView.h" />
+    <ClInclude Include="CtrlPane.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="inkPainter.h" />
     <ClInclude Include="inkPainterDoc.h" />
     <ClInclude Include="inkPainterView.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MyDockablePane.h" />
     <ClInclude Include="OutputWnd.h" />
     <ClInclude Include="PropertiesWnd.h" />
     <ClInclude Include="Resource.h" />
@@ -204,11 +206,13 @@
   <ItemGroup>
     <ClCompile Include="bmpScreen.cpp" />
     <ClCompile Include="ClassView.cpp" />
+    <ClCompile Include="CtrlPane.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="inkPainter.cpp" />
     <ClCompile Include="inkPainterDoc.cpp" />
     <ClCompile Include="inkPainterView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MyDockablePane.cpp" />
     <ClCompile Include="OutputWnd.cpp" />
     <ClCompile Include="PropertiesWnd.cpp" />
     <ClCompile Include="SettingColorDlg.cpp" />

@@ -6,7 +6,7 @@
 #include "inkPainter.h"
 
 #include "MainFrm.h"
-
+#define IDD_MyDPane 1001
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -52,6 +52,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWndEx::OnCreate(lpCreateStruct) == -1)
 		return -1;
+	//CMyDockablePane 
+	if (!m_MyDockablePane.Create(L"¿ØÖÆÃæ°å", this, CRect(0, 50, 200, 465), TRUE, IDD_MyDPane, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("Failed to create LeftPane\n");
+		return -1;
+	}
+	m_MyDockablePane.EnableDocking(CBRS_ALIGN_ANY);
+	DockPane(&m_MyDockablePane);
+	
 
 	BOOL bNameValid;
 

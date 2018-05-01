@@ -63,6 +63,12 @@
     <ClInclude Include="bmpScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyDockablePane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CtrlPane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="inkPainter.cpp">
@@ -102,6 +108,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bmpScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyDockablePane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CtrlPane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
