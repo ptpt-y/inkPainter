@@ -67,26 +67,13 @@ CinkPainterView::CinkPainterView()
 	: m_bBrush(TRUE)
 	, m_StrExePath(_T(""))
 	, m_StrDBPath(_T(""))
-	//, m_nLineWidth(8)
 	, m_iDrawStartPoint(0)
 	, m_iPointNum(0)
 	, m_fPointSize(1.0)
 	, m_iSimStartPoint(0)
 	, spread(TRUE)
 {
-	// TODO: add construction code here
-
 	m_LeftButtonDown = false;
-	//m_clr = RGB(255, 255, 255);
-	//m_clr = RGB(0, 0, 0);
-	//BYTE r = GetRValue(m_clr);
-	//BYTE g = GetGValue(m_clr);
-	//BYTE b = GetBValue(m_clr);
-
-	//m_Color[0] = r;            //»­±ÊÑÕÉ« 
-	//m_Color[1] = g;
-	//m_Color[2] = b;
-
 }
 
 CinkPainterView::~CinkPainterView()

@@ -1,4 +1,19 @@
-﻿C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.rh(1365): warning RC4005: 'IDCANCEL' : redefinition
-  
+﻿cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
+  inkPainterView.cpp
+c:\users\cheng\inkpainter\inkpainter\inkpainter\resource.h(92): warning C4005: 'IDCANCEL': macro redefinition
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h(10565): note: see previous definition of 'IDCANCEL'
+inkPainterView.cpp(263): warning C4305: 'initializing': truncation from 'double' to 'float'
+inkPainterView.cpp(266): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+inkPainterView.cpp(267): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+inkPainterView.cpp(268): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(274): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(275): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(287): warning C4305: '*=': truncation from 'double' to 'float'
+inkPainterView.cpp(309): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+inkPainterView.cpp(384): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(694): warning C4305: '*=': truncation from 'double' to 'float'
+inkPainterView.cpp(695): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+inkPainterView.cpp(696): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+inkPainterView.cpp(697): warning C4305: '-=': truncation from 'double' to 'GLfloat'
   inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.exe
   inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.pdb (Full PDB)
