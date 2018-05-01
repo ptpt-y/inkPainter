@@ -24,7 +24,8 @@
 
 
 unsigned m_nLineWidth = 10;
-COLORREF m_clr = RGB(0, 0, 0);
+COLORREF m_clr = RGB(255, 120, 20);
+BYTE m_alpha=100;// 点的不透明度
 
 CView* g_pView;
 
@@ -66,12 +67,12 @@ BYTE tempdata[1024 * 1024 * 3];//缓存 加载纹理时用
 CinkPainterView::CinkPainterView()
 	: m_StrExePath(_T(""))
 	, m_StrDBPath(_T(""))
-	//, m_nLineWidth(8)
 	, m_iDrawStartPoint(0)
 	, m_iPointNum(0)
 	, m_fPointSize(1.0)
 	, m_iSimStartPoint(0)
 	, spread(TRUE)
+	//, spread(FALSE)
 {
 	// TODO: add construction code here
 
@@ -186,32 +187,38 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 		float dy = (CPoint(m_MousePos - point)).y;//前后两个位置y的差值
 		float l = sqrt(dx*dx + dy*dy);//前后两个位置的直线距离
 
+		//int i = 0;
 		for (int i = 0; i<int(l) + 1; i++)
 		{
-			int pNum = m_iPointNum % N;
+			int pNum = m_iPointNum % m_num;
 
-			m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i);
-			m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i);
+			//m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i);
+			//m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i);
+
+			m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*100.2/10;//在点的周围发散
+			m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)/10;
 
 			m_ColorPoint[pNum].size = m_fPointSize;
 
-			m_ColorPoint[pNum].color[0] = GetRValue(m_clr);
-			m_ColorPoint[pNum].color[1] = GetGValue(m_clr);
-			m_ColorPoint[pNum].color[2] = GetBValue(m_clr);
+			m_ColorPoint[pNum].color[0] = 255-GetRValue(m_clr);
+			m_ColorPoint[pNum].color[1] = 255-GetGValue(m_clr);
+			m_ColorPoint[pNum].color[2] = 255-GetBValue(m_clr);
+
 
 			m_ColorPoint[pNum].life = 40;
 
 			//画笔晕染的粗细
-			if (thinkness == 0)
-				m_ColorPoint[pNum].size *= 1.2;
-			else if (thinkness == 1)
-				m_ColorPoint[pNum].size *= 2.0;
-			else if (thinkness == 2)
-				m_ColorPoint[pNum].size *= 3.0;
+			//if (thinkness == 0)
+			//	m_ColorPoint[pNum].size *= 1.1;
+			//else if (thinkness == 1)
+			//	m_ColorPoint[pNum].size *= 2.0;
+			//else if (thinkness == 2)
+			//	m_ColorPoint[pNum].size *= 3.0;
 
-			m_ColorPoint[pNum].color[0] -= 10;                     //改变点的颜色，使墨色较浅         
-			m_ColorPoint[pNum].color[1] -= 10;
-			m_ColorPoint[pNum].color[2] -= 10;
+
+			m_ColorPoint[pNum].color[0] *= 0.1;                     //改变点的颜色，使墨色较浅         
+			m_ColorPoint[pNum].color[1] *= 0.1;
+			m_ColorPoint[pNum].color[2] *= 0.1;
 
 			m_iPointNum++;
 
@@ -309,8 +316,8 @@ void CinkPainterView::OnTimer(UINT nIDEvent)
 	{
 		Spread();
 	}
-	InvalidateRect(CRect(0, 0, 1, 1));
-	//Invalidate(0);
+	//InvalidateRect(CRect(0, 0, 1, 1));
+	Invalidate(0);
 	CView::OnTimer(nIDEvent);
 
 }
@@ -446,20 +453,25 @@ void CinkPainterView::DrawWithOpenGL()
 	glEnable(GL_TEXTURE_2D);//启用二维纹理映射
 
 	glEnable(GL_BLEND);//启用混合模式
+	glEnable(GL_ALPHA_TEST);
 
-
-	glBlendFunc(GL_ZERO, GL_ONE_MINUS_SRC_COLOR);//用目标颜色乘以（1-源颜色）
+	//glBlendFunc(GL_ZERO, GL_ONE_MINUS_SRC_COLOR);//用目标颜色乘以（1-源颜色）
+	glBlendFunc(GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_SRC_COLOR);//用目标颜色乘以（1-源颜色）
+													  //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_COLOR);//用目标颜色乘以（1-源颜色）
 
 
 	glBindTexture(GL_TEXTURE_2D, m_texture[0]);//为接下来的画笔添加纹理
 
 	glBegin(GL_QUADS);//四边形
+
+	//int i = m_iDrawStartPoint;
 	for (int i = m_iDrawStartPoint; i < m_iSimStartPoint; i++)
 	{
-		pNum = i % N;//防止数组越界
+		//pNum = i % N;//防止数组越界
+		pNum = i % m_num;//防止数组越界
 
-					 //glColor3ub(GetRValue(m_clr), GetGValue(m_clr), GetBValue(m_clr));
-		glColor3ub(255 - GetRValue(m_clr), 255 - GetGValue(m_clr), 255 - GetBValue(m_clr));
+		glColor4ub(m_ColorPoint[pNum].color[0], m_ColorPoint[pNum].color[1], m_ColorPoint[pNum].color[2],m_alpha);
+
 		glTexCoord2f(0, 0);//当前纹理坐标
 		glVertex2f(m_ColorPoint[pNum].x - m_ColorPoint[pNum].size, m_ColorPoint[pNum].y - m_ColorPoint[pNum].size);
 		glTexCoord2f(0, 1);
@@ -479,8 +491,9 @@ void CinkPainterView::DrawWithOpenGL()
 	glBegin(GL_QUADS);//四边形
 	for (int i = m_iSimStartPoint; i < m_iPointNum; i++)
 	{
-		pNum = i % N;//防止数组越界
-		glColor3ub(255 - GetRValue(m_clr), 255 - GetGValue(m_clr), 255 - GetBValue(m_clr));
+		//pNum = i % N;//防止数组越界
+		pNum = i % m_num;//防止数组越界
+		glColor4ub(m_ColorPoint[pNum].color[0], m_ColorPoint[pNum].color[1], m_ColorPoint[pNum].color[2],m_alpha);
 		glTexCoord2f(0, 0);//当前纹理坐标
 		glVertex2f(m_ColorPoint[pNum].x - m_ColorPoint[pNum].size, m_ColorPoint[pNum].y - m_ColorPoint[pNum].size);
 		glTexCoord2f(0, 1);
@@ -570,11 +583,11 @@ void CinkPainterView::Spread()
 {
 	for (int i = m_iSimStartPoint; i < m_iPointNum; i++)
 	{
-		int pNum = i % N;
+		int pNum = i % m_num;
 		m_ColorPoint[pNum].size *= 1.01;
-		m_ColorPoint[pNum].color[0] -= 0.001;
-		m_ColorPoint[pNum].color[1] -= 0.001;
-		m_ColorPoint[pNum].color[2] -= 0.001;
+		//m_ColorPoint[pNum].color[0] -= 1;
+		//m_ColorPoint[pNum].color[1] -= 1;
+		//m_ColorPoint[pNum].color[2] -= 1;
 		m_ColorPoint[pNum].life--;
 		if (m_ColorPoint[pNum].life <= 0)
 			m_iSimStartPoint = i + 1;
@@ -590,3 +603,4 @@ BOOL CinkPainterView::OnEraseBkgnd(CDC* pDC)
 	//return CView::OnEraseBkgnd(pDC);
 	return true;//禁用windows的背景擦除
 }
+

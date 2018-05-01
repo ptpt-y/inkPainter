@@ -16,14 +16,19 @@
 
 #define N 50000
 
+
+
 struct ColorPoint//点的结构体
 {
 	float x, y;//坐标
 	float size;
-	GLfloat color[3];
+	//GLfloat color[3];
+	BYTE color[4];
+	//int color[3] = { 111,112,113 };
+
 	int life;
 };
-
+//ColorPoint m_ColorPoint[N];
 
 class CinkPainterView : public CView
 {
@@ -119,6 +124,7 @@ public:
 	// 点的数组
 	ColorPoint m_ColorPoint[N];
 
+
 	//窗口大小
 	int m_iWindowWidth, m_iWindowHeight;
 
@@ -133,7 +139,6 @@ public:
 	float m_fPointSize;// 点的大小
 
 	int mode = 1;                               //改变渲染模式时使用到的参数
-	float m_yaColor[3];                           //笔刷颜色
 	int thinkness = 0;                          //改变粗细使用到的参数
 
 	int m_iSimStartPoint;//常数0 模拟起始点
@@ -142,6 +147,8 @@ public:
 
 	void Spread();	// 扩散效果	
 
+	UINT m_num = 100;
+
 private:
 	// 兼容DC
 	CDC m_dcCompatible;
@@ -149,6 +156,7 @@ public:
 	// 兼容位图
 	CBitmap bitmap;
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);//擦除背景
+
 };
 
 #ifndef _DEBUG  // debug version in inkPainterView.cpp
