@@ -88,7 +88,7 @@
 #define IDD_SETTING_SIZE                313
 #define IDD_SETTING_COLOR               315
 #define IDB_BITMAP1                     319
-#define IDCANCEL                        1000
+//#define IDCANCEL                        1000
 #define IDC_LINE_WIDTH                  1001
 #define ID_SETTINGS_SIZE                32771
 #define ID_SETTINGS_COLOR               32772

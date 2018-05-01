@@ -1,18 +1,17 @@
-﻿  inkPainterView.cpp
-d:\inkpainter\inkpainter\inkpainter\resource.h(91): warning C4005: “IDCANCEL”: 宏重定义
-  c:\program files (x86)\windows kits\8.1\include\um\winuser.h(10565): note: 参见“IDCANCEL”的前一个定义
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(267): warning C4305: “初始化”: 从“double”到“float”截断
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(270): warning C4244: “初始化”: 从“LONG”转换到“float”，可能丢失数据
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(271): warning C4244: “初始化”: 从“LONG”转换到“float”，可能丢失数据
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(272): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(281): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(282): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(300): warning C4305: “*=”: 从“double”到“float”截断
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(322): warning C4244: “=”: 从“unsigned int”转换到“float”，可能丢失数据
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(397): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(710): warning C4305: “*=”: 从“double”到“float”截断
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(711): warning C4305: “-=”: 从“double”到“GLfloat”截断
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(712): warning C4305: “-=”: 从“double”到“GLfloat”截断
-d:\inkpainter\inkpainter\inkpainter\inkpainterview.cpp(713): warning C4305: “-=”: 从“double”到“GLfloat”截断
-  inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.exe
-  inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.pdb (Partial PDB)
+﻿cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
+  inkPainterView.cpp
+inkPainterView.cpp(267): warning C4305: 'initializing': truncation from 'double' to 'float'
+inkPainterView.cpp(270): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+inkPainterView.cpp(271): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+inkPainterView.cpp(272): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(281): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(282): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(300): warning C4305: '*=': truncation from 'double' to 'float'
+inkPainterView.cpp(322): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+inkPainterView.cpp(397): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(705): warning C4305: '*=': truncation from 'double' to 'float'
+inkPainterView.cpp(706): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+inkPainterView.cpp(707): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+inkPainterView.cpp(708): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+  inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.exe
+  inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.pdb (Full PDB)

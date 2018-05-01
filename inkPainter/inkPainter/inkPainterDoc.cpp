@@ -28,7 +28,7 @@ END_MESSAGE_MAP()
 // CinkPainterDoc construction/destruction
 
 CinkPainterDoc::CinkPainterDoc()
-	:  m_bImageChanged(FALSE)
+	:  m_bImageChanged(true)
 	, m_ImageWidth(1024)
 	, m_ImageHeight(1024)
 {
@@ -149,7 +149,7 @@ BOOL CinkPainterDoc::nOpenDocument(LPCTSTR lpszPathName)
 	if (!CDocument::OnOpenDocument(lpszPathName))
 		return FALSE;
 	
-	m_bImageChanged = false;
+	m_bImageChanged =true;
 	m_TextureImage = auxDIBImageLoad(lpszPathName);
 		memcpy(m_pImage,m_TextureImage->data,m_TextureImage->sizeX*m_TextureImage->sizeY*3);
 	for (int i = 0; i<m_TextureImage->sizeX*m_TextureImage->sizeY * 3; i++)          //Œ∆¿Ì  *3

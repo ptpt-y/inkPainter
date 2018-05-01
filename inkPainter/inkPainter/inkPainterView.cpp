@@ -544,38 +544,35 @@ void CinkPainterView::LoadTextures()
 void CinkPainterView::DrawWithOpenGL()
 {
 	int pNum;//点的数目
-	glClearColor(0, 0, 0, 0);//背景颜色
-	//glClearColor(1, 1, 1, 1);//背景颜色
+			 //glClearColor(0, 0, 0, 0);//背景颜色
+	glClearColor(1, 1, 1, 1);//背景颜色
 
-	//glClear( GL_DEPTH_BUFFER_BIT);
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+							 //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	CRect rect;
 	GetClientRect(&rect);//获取当前客户区域的大小
-						 CDC*    pDC = GetDC();//获取视图的设备文本指针
+	CDC*    pDC = GetDC();//获取视图的设备文本指针
 	m_dcCompatible.BitBlt(0, 0, rect.Width(), rect.Height(), pDC, 0, 0, SRCCOPY);
 	glLoadIdentity();
 	glEnable(GL_TEXTURE_2D);//启用二维纹理映射
 
 	glEnable(GL_BLEND);//启用混合模式
 
-	if (m_bBrush)
-	{
-		glBlendFunc(GL_ONE, GL_ONE);//第一种混合模式
-	}
-	else
-		glBlendFunc(GL_SRC_COLOR, GL_ONE_MINUS_SRC_COLOR);//第二种混合模式
+					   //if (m_bBrush)
+					   //{
+	glBlendFunc(GL_ZERO, GL_ONE_MINUS_SRC_COLOR);//第二种混合模式
+												 //}
+												 //else
+												 //glBlendFunc(GL_ZERO, GL_ONE_MINUS_SRC_COLOR);//第二种混合模式
 
 	glBindTexture(GL_TEXTURE_2D, m_texture[0]);//为接下来的画笔添加纹理
 
 	glBegin(GL_QUADS);//四边形
-	//for (int i = m_iDrawStartPoint; i > 0; i++)
 	for (int i = m_iDrawStartPoint; i < m_iSimStartPoint; i++)
 	{
 		pNum = i % N;//防止数组越界
 
-		//glColor3ub(GetRValue(m_clr), GetGValue(m_clr), GetBValue(m_clr));
+					 //glColor3ub(GetRValue(m_clr), GetGValue(m_clr), GetBValue(m_clr));
 		glColor3ub(255 - GetRValue(m_clr), 255 - GetGValue(m_clr), 255 - GetBValue(m_clr));
-		//glColor3ub(m_ColorPoint[pNum].color[0], m_ColorPoint[pNum].color[1], m_ColorPoint[pNum].color[2]);
 		glTexCoord2f(0, 0);//当前纹理坐标
 		glVertex2f(m_ColorPoint[pNum].x - m_ColorPoint[pNum].size, m_ColorPoint[pNum].y - m_ColorPoint[pNum].size);
 		glTexCoord2f(0, 1);
@@ -599,13 +596,11 @@ void CinkPainterView::DrawWithOpenGL()
 	glBindTexture(GL_TEXTURE_2D, m_texture[0]);//为接下来的画笔添加纹理
 
 	glBegin(GL_QUADS);//四边形
-	//for (int i = 0; i <m_iPointNum; i++)
 	for (int i = m_iSimStartPoint; i < m_iPointNum; i++)
 	{
 		pNum = i % N;//防止数组越界
 		glColor3ub(255 - GetRValue(m_clr), 255 - GetGValue(m_clr), 255 - GetBValue(m_clr));
 		//glColor3ub(GetRValue(m_clr), GetGValue(m_clr), GetBValue(m_clr));
-		//glColor3fv(m_ColorPoint[pNum].color);
 		glTexCoord2f(0, 0);//当前纹理坐标
 		glVertex2f(m_ColorPoint[pNum].x - m_ColorPoint[pNum].size, m_ColorPoint[pNum].y - m_ColorPoint[pNum].size);
 		glTexCoord2f(0, 1);
@@ -618,7 +613,7 @@ void CinkPainterView::DrawWithOpenGL()
 	glEnd();
 
 	glDisable(GL_TEXTURE_2D);
-
+	glDisable(GL_BLEND);
 	//glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);//反相
 	//glBlendFunc(GL_ONE, GL_ONE);
 
