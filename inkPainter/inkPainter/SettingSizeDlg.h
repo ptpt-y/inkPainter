@@ -22,4 +22,5 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	UINT m_nLineWidth;
+	afx_msg void OnEnChangeLineWidth();
 };

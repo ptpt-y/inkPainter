@@ -237,7 +237,7 @@ void CClassView::OnSort(UINT id)
 	if (pButton != NULL)
 	{
 		pButton->SetImage(GetCmdMgr()->GetCmdImage(id));
-		m_wndToolBar.Invalidate();
+		m_wndToolBar.Invalidate(0);
 		m_wndToolBar.UpdateWindow();
 	}
 }
