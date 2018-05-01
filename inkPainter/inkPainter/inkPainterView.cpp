@@ -24,6 +24,7 @@
 
 
 unsigned m_nLineWidth = 10;
+COLORREF m_clr = RGB(0, 0, 0);
 
 CView* g_pView;
 bool resetView = false;
@@ -64,10 +65,10 @@ END_MESSAGE_MAP()
 // CinkPainterView construction/destruction
 BYTE tempdata[1024 * 1024 * 3];//缓存 加载纹理时用
 CinkPainterView::CinkPainterView()
-	: m_nLineWidth(8)
+	: m_bBrush(TRUE)
 	, m_StrExePath(_T(""))
 	, m_StrDBPath(_T(""))
-	, m_bBrush(TRUE)
+	//, m_nLineWidth(8)
 	, m_iDrawStartPoint(0)
 	, m_iPointNum(0)
 	, m_fPointSize(1.0)
@@ -78,7 +79,7 @@ CinkPainterView::CinkPainterView()
 
 	m_LeftButtonDown = false;
 	//m_clr = RGB(255, 255, 255);
-	m_clr = RGB(0, 0, 0);
+	//m_clr = RGB(0, 0, 0);
 	//BYTE r = GetRValue(m_clr);
 	//BYTE g = GetGValue(m_clr);
 	//BYTE b = GetBValue(m_clr);
@@ -284,23 +285,14 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 		{
 			int pNum = m_iPointNum % N;
 
-			//m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*3.2;
-			//m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)*3.2;
-
 			m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i);
 			m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i);
 
 			m_ColorPoint[pNum].size = m_fPointSize;
 
-			//for (int j = 0; j < 3; j++)//设置颜色
-			//{
-			//	m_ColorPoint[pNum].color[j] = m_Color[j];
-			//}
 			m_ColorPoint[pNum].color[0] = GetRValue(m_clr);
 			m_ColorPoint[pNum].color[1] = GetGValue(m_clr);
 			m_ColorPoint[pNum].color[2] = GetBValue(m_clr);
-
-
 
 			m_ColorPoint[pNum].life = 40;
 

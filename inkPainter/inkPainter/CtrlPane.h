@@ -3,10 +3,13 @@
 #include "stdafx.h"
 #include "inkPainterDoc.h"
 #include "inkPainterView.h"
+#include "afxcolorbutton.h"
 #define WM_DIALOGOK (WM_USER+1)
 
 // CCtrlPane dialog
 extern unsigned int m_nLineWidth;
+extern COLORREF m_clr;
+
 class CCtrlPane : public CDialogEx
 {
 	DECLARE_DYNAMIC(CCtrlPane)
@@ -24,22 +27,13 @@ public:
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	virtual void OnOK() {
-		// TODO: Add extra validation here	
-		UpdateData(TRUE);
-		CString str;
-		GetDlgItem(IDC_EDIT_CTRLSIZE)->GetWindowText(str);
-		int i = _ttoi(str);
-		m_nLineWidth =  (unsigned int)i;
-		//MessageBox((LPTSTR)ch);
-		//AfxMessageBox(ch);
-		//m_nLineWidth = penSize;
-		UpdateData(FALSE);
-		//CDialog::OnOK(); // This will close the dialog and DoModal will return.
-	}
+	virtual void OnOK();
 	// Generated message map functions
 	DECLARE_MESSAGE_MAP()
 
 public:
+
+	UINT penSize;
+	CMFCColorButton ctrlClrBtn;
 
 };
