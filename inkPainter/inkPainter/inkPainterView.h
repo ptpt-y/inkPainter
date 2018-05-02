@@ -16,14 +16,19 @@
 
 #define N 50000
 
+
+
 struct ColorPoint//点的结构体
 {
 	float x, y;//坐标
 	float size;
-	GLfloat color[3];
+	//GLfloat color[3];
+	BYTE color[4];
+	//int color[3] = { 111,112,113 };
+
 	int life;
 };
-
+//ColorPoint m_ColorPoint[N];
 
 class CinkPainterView : public CView
 {
@@ -31,23 +36,21 @@ protected: // create from serialization only
 	CinkPainterView();
 	DECLARE_DYNCREATE(CinkPainterView)
 
-// Attributes
+	// Attributes
 public:
 	CinkPainterDoc* GetDocument() const;
 
-// Operations
+	// Operations
 public:
 
-// Overrides
+	// Overrides
 public:
 	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
-	//virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-	//virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CinkPainterView();
 #ifdef _DEBUG
@@ -57,7 +60,7 @@ public:
 
 protected:
 
-// Generated message map functions
+	// Generated message map functions
 protected:
 	//{{AFX_MSG(CinkPainterView)    /*用宏将消息响应和函数关联起来*/
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
@@ -80,11 +83,9 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 private:
-	//全局变量
-	/*---------------------------------------------------------------------------------------*/
-	//unsigned m_nLineWidth = 10;
-	//COLORREF m_clr = RGB(0, 0, 0);
-	/*---------------------------------------------------------------------------------------*/
+	//unsigned int m_nLineWidth;
+	//COLORREF m_clr;
+
 	BYTE r;
 	BYTE g;
 	BYTE b;
@@ -93,6 +94,8 @@ public:
 	afx_msg void OnSave();
 	CString m_StrExePath;
 	CString m_StrDBPath;
+
+	//unsigned int m_nLineWidth;//声明为全局变量
 
 	// 载入纹理
 	void LoadTextures();
@@ -113,8 +116,6 @@ public:
 
 	//纹理数组
 	GLuint m_texture[10];
-	// 两种混合方案
-	BOOL m_bBrush;
 
 	// 开始画的点
 	int m_iDrawStartPoint;
@@ -122,6 +123,7 @@ public:
 	int m_iPointNum;
 	// 点的数组
 	ColorPoint m_ColorPoint[N];
+
 
 	//窗口大小
 	int m_iWindowWidth, m_iWindowHeight;
@@ -137,15 +139,14 @@ public:
 	float m_fPointSize;// 点的大小
 
 	int mode = 1;                               //改变渲染模式时使用到的参数
-	float m_Color[3];                           //笔刷颜色
 	int thinkness = 0;                          //改变粗细使用到的参数
-	
+
 	int m_iSimStartPoint;//常数0 模拟起始点
 
-	bool spread;//表示是否开启扩散 若是则为1 否则为0
 
-																					
 	void Spread();	// 扩散效果	
+
+	UINT m_num = 50000;
 
 private:
 	// 兼容DC
@@ -153,12 +154,14 @@ private:
 public:
 	// 兼容位图
 	CBitmap bitmap;
-	CBitmap getBitmap();
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);//擦除背景
+
 };
 
 #ifndef _DEBUG  // debug version in inkPainterView.cpp
 inline CinkPainterDoc* CinkPainterView::GetDocument() const
-   { return reinterpret_cast<CinkPainterDoc*>(m_pDocument); }
+{
+	return reinterpret_cast<CinkPainterDoc*>(m_pDocument);
+}
 #endif
 

@@ -79,19 +79,7 @@ void CMyDockablePane::OnSize(UINT nType, int cx, int cy)
 	// 选项卡控件应覆盖整个工作区  
 
 	AdjustLayout();
-	/*---------------------------------------------------------------------------------------*/
-	/*if (GetSafeHwnd() == NULL)
-	{
-		return;
-	}
-
-	if (m_CtrlPane.GetSafeHwnd() != NULL)
-	{
-		CRect rectClient;
-		GetClientRect(rectClient);
-		m_CtrlPane.SetWindowPos(NULL, rectClient.left, rectClient.top, rectClient.Width(), rectClient.Height(), SWP_NOACTIVATE | SWP_NOZORDER);
-	}*/
-	/*---------------------------------------------------------------------------------------*/
+	
 }
 
 void CMyDockablePane::OnDestroy()
@@ -99,3 +87,4 @@ void CMyDockablePane::OnDestroy()
 	CDockablePane::OnDestroy();
 	m_CtrlPane.DestroyWindow();
 }
+

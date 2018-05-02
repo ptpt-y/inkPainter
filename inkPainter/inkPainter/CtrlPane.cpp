@@ -13,8 +13,11 @@ IMPLEMENT_DYNAMIC(CCtrlPane, CDialogEx)
 
 CCtrlPane::CCtrlPane(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_CTRL, pParent)
+	, pic_alpha(120)
+	//, spread_switch(1)
 {
 	//控制面板中各个控件的初始化
+	pic_alpha = 120;
 	penSize = m_nLineWidth;
 	ctrlClrBtn.SetColor(m_clr);
 }
@@ -36,6 +39,8 @@ void CCtrlPane::DoDataExchange(CDataExchange* pDX)
 
 	DDX_Text(pDX, IDC_EDIT_CTRLSIZE, penSize);
 	DDX_Control(pDX, IDC_MFCCOLORBUTTON2, ctrlClrBtn);
+	DDX_Text(pDX, IDC_EDIT2, pic_alpha);
+	DDV_MinMaxByte(pDX, pic_alpha, 0, 255);
 }
 
 void CCtrlPane::OnOK() {
@@ -43,8 +48,9 @@ void CCtrlPane::OnOK() {
 	UpdateData(TRUE);
 
 	m_nLineWidth = penSize;//画笔大小重置
-
+	m_alpha = pic_alpha;
 	m_clr = ctrlClrBtn.GetColor();//画笔颜色重置
+								  //m_spread = spread_switch;
 	if (m_clr == -1) {
 		m_clr = ctrlClrBtn.GetAutomaticColor();
 	}
@@ -58,4 +64,3 @@ END_MESSAGE_MAP()
 
 
 // CCtrlPane message handlers
-

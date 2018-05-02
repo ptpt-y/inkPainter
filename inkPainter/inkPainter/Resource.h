@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by inkPainter.rc
+// Microsoft Visual C++ 生成的包含文件。
+// 供 inkPainter.rc 使用
 //
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
@@ -89,14 +89,14 @@
 #define IDD_SETTING_COLOR               315
 #define IDD_CTRL                        319
 #define IDB_BITMAP1                     319
-#define IDCANCEL                        1000
 #define IDC_LINE_WIDTH                  1001
 #define IDC_EDIT1                       1002
 #define IDC_EDIT_CTRLSIZE               1002
 #define IDC__CTRL_SIZE                  1004
 #define IDC__CTRL_COLOR                 1006
 #define IDC_MFCCOLORBUTTON2             1007
-#define IDC_COMBO1                      1009
+#define IDC_EDIT2                       1008
+#define IDC_SPLIT1                      1010
 #define ID_SETTINGS_SIZE                32771
 #define ID_SETTINGS_COLOR               32772
 #define ID_SETTINGS_BRUSH               32773
@@ -109,7 +109,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        320
 #define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1010
+#define _APS_NEXT_CONTROL_VALUE         1012
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
