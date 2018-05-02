@@ -23,5 +23,6 @@ inkPainterView.cpp(228): warning C4244: “*=”: 从“double”转换到“BYT
 inkPainterView.cpp(242): warning C4244: “=”: 从“unsigned int”转换到“float”，可能丢失数据
 inkPainterView.cpp(317): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
 inkPainterView.cpp(594): warning C4305: “*=”: 从“double”到“float”截断
+  LINK : 没有找到 D:\inkPainter\inkPainter\Debug\inkPainter.exe 或上一个增量链接没有生成它；正在执行完全链接
   inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.exe
   inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.pdb (Full PDB)
