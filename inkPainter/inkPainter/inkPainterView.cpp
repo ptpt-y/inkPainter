@@ -26,7 +26,7 @@
 unsigned m_nLineWidth = 10;
 COLORREF m_clr = RGB(255, 120, 20);
 BYTE m_alpha=100;// 点的不透明度
-int m_spread;//表示是否开启扩散 若是则为1 否则为0
+//int m_spread;//表示是否开启扩散 若是则为1 否则为0
 
 
 CView* g_pView;
@@ -209,10 +209,10 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 
 			m_ColorPoint[pNum].life = 40;
 
-			if (m_spread == 1)
-			{
+			//if (m_spread == 1)
+			//{
 				Spread();
-			}
+			//}
 
 			//画笔晕染的粗细
 			//if (thinkness == 0)
