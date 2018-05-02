@@ -201,6 +201,33 @@
     <Image Include="..\Debug\SavePicture\OurDrawPic.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\inkPainterLogo16.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\inkPainterLogo32.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitbug_favicon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\inkPainterLogo256.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon4.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\inkPainterLogo256.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\inkPainter.rc2">

@@ -1,0 +1,21 @@
+﻿  inkPainterDoc.cpp
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\classview.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\ctrlpane.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\fileview.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\inkpainterview.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\mainfrm.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\mydockablepane.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\outputwnd.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\propertieswnd.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\settingcolordlg.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\settingsizedlg.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\stdafx.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+LINK : warning C4727: 具有相同时间戳的名为 d:\inkpainter\inkpainter\inkpainter\release\inkpainter.pch 的 PCH 已存在于 d:\inkpainter\inkpainter\inkpainter\release\viewtree.obj 和 d:\inkpainter\inkpainter\inkpainter\release\bmpscreen.obj 中。 使用第一个 PCH。
+  正在生成代码
+  1 of 760 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  inkPainter.vcxproj -> D:\inkPainter\inkPainter\Release\inkPainter.exe
+  inkPainter.vcxproj -> D:\inkPainter\inkPainter\Release\inkPainter.pdb (Full PDB)
