@@ -290,7 +290,7 @@ int CinkPainterView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return 0;
 
 	LoadTextures();//载入纹理
-	SetTimer(0,10, NULL);//定时器
+	SetTimer(0,1, NULL);//定时器
 
 	return 0;
 }
