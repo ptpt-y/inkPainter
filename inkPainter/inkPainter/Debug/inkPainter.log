@@ -1,5 +1,2 @@
-﻿cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
-  CtrlPane.cpp
-  MyDockablePane.cpp
-  inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.exe
+﻿  inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.exe
   inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.pdb (Full PDB)

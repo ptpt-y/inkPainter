@@ -10,7 +10,7 @@
 extern unsigned int m_nLineWidth;
 extern COLORREF m_clr;
 extern BYTE m_alpha;// 点的不透明度
-//extern int m_spread;//表示是否开启扩散 若是则为1 否则为0
+extern int m_spread;
 
 class CCtrlPane : public CDialogEx
 {
@@ -37,7 +37,11 @@ public:
 
 	UINT penSize;
 	CMFCColorButton ctrlClrBtn;
-
 	BYTE pic_alpha;
-	//int spread_switch;
+	int ctrlSpread;
+	afx_msg void OnClickedRadio2Spread0();
+	afx_msg void OnRadio3Spread1();
+	afx_msg void OnRadio4Spread2();
+	afx_msg void OnRadio5Spread3();
+//	afx_msg void OnUpdateRadio5Spread3(CCmdUI *pCmdUI);
 };

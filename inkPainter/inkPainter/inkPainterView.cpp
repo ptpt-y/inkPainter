@@ -26,7 +26,7 @@
 unsigned m_nLineWidth = 10;
 COLORREF m_clr = RGB(255, 120, 20);
 BYTE m_alpha=100;// 点的不透明度
-//int m_spread;//表示是否开启扩散 若是则为1 否则为0
+int m_spread = 0;
 
 
 CView* g_pView;
@@ -182,7 +182,7 @@ void CinkPainterView::OnLButtonUp(UINT nFlags, CPoint point)
 //鼠标移动绘制图形  
 void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	float c = -0.4;//偏移量控制常数
+	float c ;//偏移量控制常数
 	if (m_fPointSize > 0)
 	{
 		float dx = (CPoint(m_MousePos - point)).x;//前后两个位置x的差值
@@ -193,12 +193,30 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 		for (int i = 0; i<int(l) + 1; i++)
 		{
 			int pNum = m_iPointNum % m_num;
-
-			//m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i);
-			//m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i);
-
-			m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*100.2/10;//在点的周围发散
-			m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)/10;
+			if(m_spread == 0){
+				/*------------------------------------扩散效果函数 1---------------------------------------*/
+				c = -0.4;//偏移量控制常数
+				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i);
+				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i);
+			}
+			if (m_spread == 1) {
+				/*------------------------------------扩散效果函数 2---------------------------------------*/
+				c = 0.7;//偏移量控制常数
+				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)/10;//在点的周围发散
+				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)/10;
+			}
+			if (m_spread == 2) {
+				/*------------------------------------扩散效果函数 3---------------------------------------*/
+				c = -0.4;//偏移量控制常数
+				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*100.2 / 10;
+				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)/10;
+			}
+			if (m_spread == 3) {
+				/*------------------------------------扩散效果函数 3---------------------------------------*/
+				c = -0.4;//偏移量控制常数
+				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*300/ 10;
+				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i) *300 / 10;
+			}
 
 			m_ColorPoint[pNum].size = m_fPointSize;
 
@@ -209,10 +227,7 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 
 			m_ColorPoint[pNum].life = 40;
 
-			//if (m_spread == 1)
-			//{
-				Spread();
-			//}
+			Spread();
 
 			//画笔晕染的粗细
 			//if (thinkness == 0)
@@ -591,7 +606,14 @@ void CinkPainterView::Spread()
 	for (int i = m_iSimStartPoint; i < m_iPointNum; i++)
 	{
 		int pNum = i % m_num;
-		m_ColorPoint[pNum].size *= 1.01;
+		if(m_spread == 0)
+			m_ColorPoint[pNum].size *= 1.01;
+		if (m_spread == 0)
+			m_ColorPoint[pNum].size *= 1.0;
+		if (m_spread == 0)
+			m_ColorPoint[pNum].size *= 1.015;
+		if (m_spread == 0)
+			m_ColorPoint[pNum].size *= 1.005;
 		//m_ColorPoint[pNum].color[0] -= 1;
 		//m_ColorPoint[pNum].color[1] -= 1;
 		//m_ColorPoint[pNum].color[2] -= 1;

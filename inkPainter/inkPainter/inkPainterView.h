@@ -95,8 +95,6 @@ public:
 	CString m_StrExePath;
 	CString m_StrDBPath;
 
-	//unsigned int m_nLineWidth;//声明为全局变量
-
 	// 载入纹理
 	void LoadTextures();
 	// 绘图
