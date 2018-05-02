@@ -97,7 +97,6 @@
 #define IDC_MFCCOLORBUTTON2             1007
 #define IDC_EDIT2                       1008
 #define IDC_SPLIT1                      1010
-#define IDC_EDIT3                       1011
 #define ID_SETTINGS_SIZE                32771
 #define ID_SETTINGS_COLOR               32772
 #define ID_SETTINGS_BRUSH               32773

@@ -40,7 +40,6 @@ void CCtrlPane::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_MFCCOLORBUTTON2, ctrlClrBtn);
 	DDX_Text(pDX, IDC_EDIT2, pic_alpha);
 	DDV_MinMaxByte(pDX, pic_alpha, 0, 255);
-	DDX_Text(pDX, IDC_EDIT3, spread_switch);
 }
 
 void CCtrlPane::OnOK() {
@@ -50,7 +49,7 @@ void CCtrlPane::OnOK() {
 	m_nLineWidth = penSize;//画笔大小重置
 	m_alpha = pic_alpha;
 	m_clr = ctrlClrBtn.GetColor();//画笔颜色重置
-	m_spread = spread_switch;
+	//m_spread = spread_switch;
 
 	if (m_clr == -1) {
 		m_clr = ctrlClrBtn.GetAutomaticColor();
