@@ -9,7 +9,9 @@
 
 class CinkPainterDoc : public CDocument
 {
-protected: // create from serialization only
+protected:
+	void SetTitle(LPCTSTR lpszTitle);
+	// create from serialization only
 	CinkPainterDoc();
 	DECLARE_DYNCREATE(CinkPainterDoc)
 

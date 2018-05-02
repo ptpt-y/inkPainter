@@ -89,6 +89,12 @@
 #define IDD_SETTING_COLOR               315
 #define IDD_CTRL                        319
 #define IDB_BITMAP1                     319
+#define IDB_BITMAP2                     320
+#define IDB_BITMAP3                     321
+#define IDI_ICON1                       322
+#define IDI_ICON2                       323
+#define IDI_ICON3                       324
+#define IDB_BITMAP4                     330
 #define IDC_LINE_WIDTH                  1001
 #define IDC_EDIT1                       1002
 #define IDC_EDIT_CTRLSIZE               1002
@@ -107,7 +113,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        320
+#define _APS_NEXT_RESOURCE_VALUE        331
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1012
 #define _APS_NEXT_SYMED_VALUE           310

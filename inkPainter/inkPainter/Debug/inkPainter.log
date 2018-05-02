@@ -1,5 +1,30 @@
-﻿cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
+﻿cl : 命令行 warning D9007: “/Gm”需要“/Zi 或 /ZI”；选项被忽略
+  ClassView.cpp
   CtrlPane.cpp
+  FileView.cpp
+  MainFrm.cpp
   MyDockablePane.cpp
-  inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.exe
-  inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.pdb (Full PDB)
+  OutputWnd.cpp
+  PropertiesWnd.cpp
+  SettingColorDlg.cpp
+  SettingSizeDlg.cpp
+  ViewTree.cpp
+  bmpScreen.cpp
+  inkPainter.cpp
+  inkPainterDoc.cpp
+  inkPainterView.cpp
+inkPainterView.cpp(185): warning C4305: “初始化”: 从“double”到“float”截断
+inkPainterView.cpp(188): warning C4244: “初始化”: 从“LONG”转换到“float”，可能丢失数据
+inkPainterView.cpp(189): warning C4244: “初始化”: 从“LONG”转换到“float”，可能丢失数据
+inkPainterView.cpp(190): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+inkPainterView.cpp(200): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+inkPainterView.cpp(201): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+inkPainterView.cpp(226): warning C4244: “*=”: 从“double”转换到“BYTE”，可能丢失数据
+inkPainterView.cpp(227): warning C4244: “*=”: 从“double”转换到“BYTE”，可能丢失数据
+inkPainterView.cpp(228): warning C4244: “*=”: 从“double”转换到“BYTE”，可能丢失数据
+inkPainterView.cpp(242): warning C4244: “=”: 从“unsigned int”转换到“float”，可能丢失数据
+inkPainterView.cpp(317): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
+inkPainterView.cpp(594): warning C4305: “*=”: 从“double”到“float”截断
+  stdafx.cpp
+  inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.exe
+  inkPainter.vcxproj -> D:\inkPainter\inkPainter\Debug\inkPainter.pdb (Full PDB)

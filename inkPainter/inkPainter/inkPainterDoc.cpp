@@ -26,7 +26,10 @@ END_MESSAGE_MAP()
 
 
 // CinkPainterDoc construction/destruction
-
+void CinkPainterDoc::SetTitle(LPCTSTR lpszTitle)
+{
+	CDocument::SetTitle(L"面向山水画的徒手绘图软件");
+}
 CinkPainterDoc::CinkPainterDoc()
 	:  m_bImageChanged(true)
 {
