@@ -143,11 +143,10 @@ public:
 
 	int m_iSimStartPoint;//常数0 模拟起始点
 
-	bool spread;//表示是否开启扩散 若是则为1 否则为0
 
 	void Spread();	// 扩散效果	
 
-	UINT m_num = 100;
+	UINT m_num = 50000;
 
 private:
 	// 兼容DC

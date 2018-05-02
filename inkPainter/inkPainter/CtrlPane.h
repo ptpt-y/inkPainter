@@ -9,6 +9,9 @@
 // CCtrlPane dialog
 extern unsigned int m_nLineWidth;
 extern COLORREF m_clr;
+extern BYTE m_alpha;// 点的不透明度
+extern int m_spread;//表示是否开启扩散 若是则为1 否则为0
+
 
 class CCtrlPane : public CDialogEx
 {
@@ -36,4 +39,7 @@ public:
 	UINT penSize;
 	CMFCColorButton ctrlClrBtn;
 
+	afx_msg void OnEnChangeEditCtrlsize();
+	BYTE pic_alpha;
+	int spread_switch;
 };

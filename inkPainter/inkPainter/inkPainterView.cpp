@@ -26,6 +26,8 @@
 unsigned m_nLineWidth = 10;
 COLORREF m_clr = RGB(255, 120, 20);
 BYTE m_alpha=100;// 点的不透明度
+int m_spread;//表示是否开启扩散 若是则为1 否则为0
+
 
 CView* g_pView;
 
@@ -71,8 +73,8 @@ CinkPainterView::CinkPainterView()
 	, m_iPointNum(0)
 	, m_fPointSize(1.0)
 	, m_iSimStartPoint(0)
-	, spread(TRUE)
-	//, spread(FALSE)
+	//, m_spread(TRUE)
+	//, m_spread(FALSE)
 {
 	// TODO: add construction code here
 
@@ -207,6 +209,11 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 
 			m_ColorPoint[pNum].life = 40;
 
+			if (m_spread == 1)
+			{
+				Spread();
+			}
+
 			//画笔晕染的粗细
 			//if (thinkness == 0)
 			//	m_ColorPoint[pNum].size *= 1.1;
@@ -283,7 +290,7 @@ int CinkPainterView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return 0;
 
 	LoadTextures();//载入纹理
-	SetTimer(0, 1, NULL);//定时器
+	SetTimer(0,10, NULL);//定时器
 
 	return 0;
 }
@@ -307,15 +314,15 @@ void CinkPainterView::OnTimer(UINT nIDEvent)
 {
 	if (!m_LeftButtonDown)
 	{
-		m_fPointSize -= (0.3*m_fPointSize);//每次刷新时笔触大小发生变化
+		m_fPointSize -= (0.3*m_fPointSize);//松开左键时笔触过渡的效果
 		if (m_fPointSize < 0)
 			m_fPointSize = 0;
 	}
 
-	if (spread)
-	{
-		Spread();
-	}
+	//if (m_spread==1)
+	//{
+	//	Spread();
+	//}
 	//InvalidateRect(CRect(0, 0, 1, 1));
 	Invalidate(0);
 	CView::OnTimer(nIDEvent);
@@ -588,6 +595,8 @@ void CinkPainterView::Spread()
 		//m_ColorPoint[pNum].color[0] -= 1;
 		//m_ColorPoint[pNum].color[1] -= 1;
 		//m_ColorPoint[pNum].color[2] -= 1;
+		//m_alpha = 255 - m_alpha;
+
 		m_ColorPoint[pNum].life--;
 		if (m_ColorPoint[pNum].life <= 0)
 			m_iSimStartPoint = i + 1;
