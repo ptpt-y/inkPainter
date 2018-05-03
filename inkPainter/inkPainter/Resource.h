@@ -108,6 +108,8 @@
 #define IDC_RADIO4_SPREAD2              1016
 #define IDC_RADIO5                      1017
 #define IDC_RADIO5_SPREAD3              1017
+#define IDC_RADIO1                      1018
+#define IDC_RADIO1_ERASER               1018
 #define ID_SETTINGS_SIZE                32771
 #define ID_SETTINGS_COLOR               32772
 #define ID_SETTINGS_BRUSH               32773
@@ -120,7 +122,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        331
 #define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1018
+#define _APS_NEXT_CONTROL_VALUE         1019
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
