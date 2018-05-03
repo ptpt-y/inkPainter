@@ -9,11 +9,10 @@
 #include "inkPainter.h"
 #endif
 
+#include "math.h"
 #include "inkPainterDoc.h"
 #include "CtrlPane.h"
 #include "inkPainterView.h"
-#include "SettingSizeDlg.h"
-#include "SettingColorDlg.h"
 #include "bmpScreen.h"
 #include "windows.h"
 
@@ -53,11 +52,6 @@ BEGIN_MESSAGE_MAP(CinkPainterView, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CinkPainterView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
-
-	ON_COMMAND(ID_SETTINGS_SIZE, &CinkPainterView::OnSettingSize)
-	ON_COMMAND(ID_SETTINGS_COLOR, &CinkPainterView::OnSettingColor)
-	ON_COMMAND(ID_SETTINGS_BRUSH, &CinkPainterView::OnSettingBrush)
-	ON_COMMAND(ID_SETTINGS_OPACITY, &CinkPainterView::OnSettingOpacity)
 	ON_COMMAND(ID_SAVE, &CinkPainterView::OnSave)
 
 	ON_WM_ERASEBKGND()
@@ -73,8 +67,6 @@ CinkPainterView::CinkPainterView()
 	, m_iPointNum(0)
 	, m_fPointSize(1.0)
 	, m_iSimStartPoint(0)
-	//, m_spread(TRUE)
-	//, m_spread(FALSE)
 {
 	// TODO: add construction code here
 
@@ -201,15 +193,15 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 			}
 			if (m_spread == 1) {
 				/*------------------------------------扩散效果函数 2---------------------------------------*/
-				c = 0.7;//偏移量控制常数
-				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)/10;//在点的周围发散
-				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)/10;
+				c = -0.4;//偏移量控制常数
+				m_ColorPoint[pNum].x = m_MousePos.x -m_iWindowWidth / 2 + dx / l*i*pow(c, i)*100.2 / 10;
+				m_ColorPoint[pNum].y = -m_MousePos.y +m_iWindowHeight / 2 + dy / l*i*pow(c, i)/10;
 			}
 			if (m_spread == 2) {
 				/*------------------------------------扩散效果函数 3---------------------------------------*/
-				c = -0.4;//偏移量控制常数
+				c = 1.05;//偏移量控制常数
 				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*100.2 / 10;
-				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)/10;
+				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i)*100.2 /10;
 			}
 			if (m_spread == 3) {
 				/*------------------------------------扩散效果函数 3---------------------------------------*/
@@ -226,17 +218,6 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 
 
 			m_ColorPoint[pNum].life = 40;
-
-			Spread();
-
-			//画笔晕染的粗细
-			//if (thinkness == 0)
-			//	m_ColorPoint[pNum].size *= 1.1;
-			//else if (thinkness == 1)
-			//	m_ColorPoint[pNum].size *= 2.0;
-			//else if (thinkness == 2)
-			//	m_ColorPoint[pNum].size *= 3.0;
-
 
 			m_ColorPoint[pNum].color[0] *= 0.1;                     //改变点的颜色，使墨色较浅         
 			m_ColorPoint[pNum].color[1] *= 0.1;
@@ -334,51 +315,13 @@ void CinkPainterView::OnTimer(UINT nIDEvent)
 			m_fPointSize = 0;
 	}
 
-	//if (m_spread==1)
-	//{
-	//	Spread();
-	//}
-	//InvalidateRect(CRect(0, 0, 1, 1));
+	Spread();
+
 	Invalidate(0);
 	CView::OnTimer(nIDEvent);
 
 }
 
-//画笔大小设置
-void CinkPainterView::OnSettingSize()
-{
-	//模态对话框 点击OK后对话框被销毁
-	CSettingSizeDlg sizeDlg;
-	sizeDlg.m_nLineWidth = m_nLineWidth;
-	if (IDOK == sizeDlg.DoModal())
-	{
-		m_nLineWidth = sizeDlg.m_nLineWidth;
-	}
-}
-
-//画笔颜色设置
-void CinkPainterView::OnSettingColor()
-{
-	CColorDialog dlg;
-	dlg.m_cc.Flags |= CC_RGBINIT | CC_FULLOPEN;
-	dlg.m_cc.rgbResult = m_clr;
-	if (IDOK == dlg.DoModal())
-	{
-		m_clr = dlg.m_cc.rgbResult;
-	}
-}
-
-//画笔笔刷设置
-void CinkPainterView::OnSettingBrush()
-{
-	AfxMessageBox(L"set brush ");
-}
-
-//画笔轻重 不透明度 设置
-void CinkPainterView::OnSettingOpacity()
-{
-	AfxMessageBox(L"set opacity ");
-}
 // CinkPainterView diagnostics
 
 #ifdef _DEBUG
@@ -437,13 +380,75 @@ void CinkPainterView::LoadTextures()
 {
 	AUX_RGBImageRec *TextureImage;
 	TextureImage = auxDIBImageLoad(L"Material/texture.bmp");//载入bmp图
-
 	glGenTextures(1, &m_texture[0]);// 为第0个位图创建纹理
 	glBindTexture(GL_TEXTURE_2D, m_texture[0]);//将调用glGenTextures函数生成的纹理的名字绑定到对应的目标纹理上
 	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
 		TextureImage->sizeX, TextureImage->sizeY,
 		GL_RGB, GL_UNSIGNED_BYTE, TextureImage->data);//将载入的位图文件(*.bmp)转换成纹理贴图
 	//线形滤波 使用线性插值计算两个图像中的每个图像的纹素值，然后在两个图像间进行线性插值
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	//释放纹理
+	if (TextureImage)
+	{
+		if (TextureImage->data)
+		{
+			free(TextureImage->data);
+		}
+		free(TextureImage);
+	}
+
+	TextureImage = auxDIBImageLoad(L"Material/texture.bmp");//载入bmp图
+	glGenTextures(1, &m_texture[1]);// 为第0个位图创建纹理
+	glBindTexture(GL_TEXTURE_2D, m_texture[1]);//将调用glGenTextures函数生成的纹理的名字绑定到对应的目标纹理上
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
+		TextureImage->sizeX, TextureImage->sizeY,
+		GL_RGB, GL_UNSIGNED_BYTE, TextureImage->data);//将载入的位图文件(*.bmp)转换成纹理贴图
+													  //线形滤波 使用线性插值计算两个图像中的每个图像的纹素值，然后在两个图像间进行线性插值
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	//释放纹理
+	if (TextureImage)
+	{
+		if (TextureImage->data)
+		{
+			free(TextureImage->data);
+		}
+		free(TextureImage);
+	}
+
+	TextureImage = auxDIBImageLoad(L"Material/texture3.bmp");//载入bmp图
+	glGenTextures(1, &m_texture[2]);
+	glBindTexture(GL_TEXTURE_2D, m_texture[2]);//将调用glGenTextures函数生成的纹理的名字绑定到对应的目标纹理上
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
+		TextureImage->sizeX, TextureImage->sizeY,
+		GL_RGB, GL_UNSIGNED_BYTE, TextureImage->data);//将载入的位图文件(*.bmp)转换成纹理贴图
+													  //线形滤波 使用线性插值计算两个图像中的每个图像的纹素值，然后在两个图像间进行线性插值
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	//释放纹理
+	if (TextureImage)
+	{
+		if (TextureImage->data)
+		{
+			free(TextureImage->data);
+		}
+		free(TextureImage);
+	}
+
+	TextureImage = auxDIBImageLoad(L"Material/texture6.bmp");//载入bmp图
+	glGenTextures(1, &m_texture[3]);
+	glBindTexture(GL_TEXTURE_2D, m_texture[3]);//将调用glGenTextures函数生成的纹理的名字绑定到对应的目标纹理上
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
+		TextureImage->sizeX, TextureImage->sizeY,
+		GL_RGB, GL_UNSIGNED_BYTE, TextureImage->data);//将载入的位图文件(*.bmp)转换成纹理贴图
+													  //线形滤波 使用线性插值计算两个图像中的每个图像的纹素值，然后在两个图像间进行线性插值
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -507,8 +512,14 @@ void CinkPainterView::DrawWithOpenGL()
 
 	m_iDrawStartPoint = m_iSimStartPoint;//为了只保留最后画的那一笔
 
-
-	glBindTexture(GL_TEXTURE_2D, m_texture[0]);//为接下来的画笔添加纹理
+	if(m_spread == 0)
+		glBindTexture(GL_TEXTURE_2D, m_texture[0]);//为接下来的画笔添加纹理
+	if (m_spread == 1)
+		glBindTexture(GL_TEXTURE_2D, m_texture[1]);//为接下来的画笔添加纹理
+	if (m_spread == 2)
+		glBindTexture(GL_TEXTURE_2D, m_texture[2]);//为接下来的画笔添加纹理
+	if (m_spread == 3)
+		glBindTexture(GL_TEXTURE_2D, m_texture[3]);//为接下来的画笔添加纹理
 
 	glBegin(GL_QUADS);//四边形
 	for (int i = m_iSimStartPoint; i < m_iPointNum; i++)

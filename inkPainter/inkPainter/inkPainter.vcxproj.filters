@@ -54,12 +54,6 @@
     <ClInclude Include="PropertiesWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SettingSizeDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SettingColorDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="bmpScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -99,12 +93,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PropertiesWnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SettingSizeDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SettingColorDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bmpScreen.cpp">

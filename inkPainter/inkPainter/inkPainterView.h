@@ -75,11 +75,6 @@ protected:
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
-	//menu setting
-	afx_msg void OnSettingSize();
-	afx_msg void OnSettingColor();
-	afx_msg void OnSettingBrush();
-	afx_msg void OnSettingOpacity();
 
 	DECLARE_MESSAGE_MAP()
 private:

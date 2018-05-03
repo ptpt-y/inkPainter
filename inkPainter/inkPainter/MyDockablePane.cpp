@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MyDockablePane.h"
-#include "SettingSizeDlg.h"
+
 
 
 
