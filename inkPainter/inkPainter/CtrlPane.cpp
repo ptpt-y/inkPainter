@@ -74,7 +74,7 @@ END_MESSAGE_MAP()
 
 // CCtrlPane message handlers
 
-
+//不同晕染扩散模式的设定
 void CCtrlPane::OnClickedRadio2Spread0()
 {
 	ctrlSpread = 0;

@@ -1,4 +1,31 @@
 ﻿cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
+  ClassView.cpp
   CtrlPane.cpp
+  FileView.cpp
+  MainFrm.cpp
+  MyDockablePane.cpp
+  OutputWnd.cpp
+  PropertiesWnd.cpp
+  inkPainter.cpp
+  inkPainterView.cpp
+inkPainterView.cpp(180): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+inkPainterView.cpp(181): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+inkPainterView.cpp(182): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(190): warning C4305: '=': truncation from 'double' to 'float'
+inkPainterView.cpp(191): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(192): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(196): warning C4305: '=': truncation from 'double' to 'float'
+inkPainterView.cpp(202): warning C4305: '=': truncation from 'double' to 'float'
+inkPainterView.cpp(203): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(204): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(208): warning C4305: '=': truncation from 'double' to 'float'
+inkPainterView.cpp(209): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(210): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(222): warning C4244: '*=': conversion from 'double' to 'BYTE', possible loss of data
+inkPainterView.cpp(223): warning C4244: '*=': conversion from 'double' to 'BYTE', possible loss of data
+inkPainterView.cpp(224): warning C4244: '*=': conversion from 'double' to 'BYTE', possible loss of data
+inkPainterView.cpp(238): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+inkPainterView.cpp(312): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+inkPainterView.cpp(627): warning C4305: '*=': truncation from 'double' to 'float'
   inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.exe
   inkPainter.vcxproj -> C:\Users\cheng\inkPainter\inkPainter\Debug\inkPainter.pdb (Full PDB)

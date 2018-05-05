@@ -21,12 +21,10 @@
 struct ColorPoint//点的结构体
 {
 	float x, y;//坐标
-	float size;
-	//GLfloat color[3];
-	BYTE color[4];
-	//int color[3] = { 111,112,113 };
+	float size;//大小
+	BYTE color[4];//颜色
 
-	int life;
+	int life;//生命值
 };
 //ColorPoint m_ColorPoint[N];
 
@@ -78,8 +76,6 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 private:
-	//unsigned int m_nLineWidth;
-	//COLORREF m_clr;
 
 	BYTE r;
 	BYTE g;
@@ -130,9 +126,6 @@ public:
 	int m_GLPixelIndex;                         //像素格式索引
 
 	float m_fPointSize;// 点的大小
-
-	int mode = 1;                               //改变渲染模式时使用到的参数
-	int thinkness = 0;                          //改变粗细使用到的参数
 
 	int m_iSimStartPoint;//常数0 模拟起始点
 

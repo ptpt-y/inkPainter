@@ -116,6 +116,7 @@ void CinkPainterView::OnDraw(CDC* pDC)
 	}
 	DrawWithOpenGL();
 	SwapBuffers(m_hDC);
+	SetTimer(0, 20, NULL);//定时器
 }
 
 
@@ -187,14 +188,14 @@ void CinkPainterView::OnMouseMove(UINT nFlags, CPoint point)
 			if (m_spread == 0) {
 				/*------------------------------------扩散效果函数 1---------------------------------------*/
 				c = -0.4;//偏移量控制常数
-				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i);
-				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i);
+				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*100.2 / 10;
+				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i) / 10;
 			}
 			if (m_spread == 1 || m_spread == 4) {
 				/*------------------------------------扩散效果函数 2---------------------------------------*/
 				c = -0.4;//偏移量控制常数
-				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i*pow(c, i)*100.2 / 10;
-				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 + dy / l*i*pow(c, i) / 10;
+				m_ColorPoint[pNum].x = m_MousePos.x - m_iWindowWidth / 2 + dx / l*i;
+				m_ColorPoint[pNum].y = -m_MousePos.y + m_iWindowHeight / 2 - dy / l*i; 
 			}
 			if (m_spread == 2) {
 				/*------------------------------------扩散效果函数 3---------------------------------------*/
@@ -285,7 +286,6 @@ int CinkPainterView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return 0;
 
 	LoadTextures();//载入纹理
-	SetTimer(0, 1, NULL);//定时器
 
 	return 0;
 }
@@ -400,7 +400,7 @@ void CinkPainterView::LoadTextures()
 	}
 
 	TextureImage = auxDIBImageLoad(L"Material/texture.bmp");//载入bmp图
-	glGenTextures(1, &m_texture[1]);// 为第0个位图创建纹理
+	glGenTextures(1, &m_texture[1]);
 	glBindTexture(GL_TEXTURE_2D, m_texture[1]);//将调用glGenTextures函数生成的纹理的名字绑定到对应的目标纹理上
 	gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
 		TextureImage->sizeX, TextureImage->sizeY,

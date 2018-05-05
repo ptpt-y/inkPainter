@@ -43,7 +43,7 @@ int CMyDockablePane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CDockablePane::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  Add your specialized creation code here
+	// 创建控制面板对话框，与可停靠窗口相关联
 
 	CRect temprect;
 	GetClientRect(&temprect);
@@ -53,7 +53,6 @@ int CMyDockablePane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("未能创建对话框窗口\n");
 		return -1;      // 未能创建
 	}
-	//m_CtrlPane.SetWindowPos(this, 0, 0, temprect.Width(), temprect.Height(), SWP_NOZORDER | SWP_NOMOVE);
 	m_CtrlPane.ShowWindow(SW_SHOW);
 
 	m_wndToolBar.Create(this, AFX_DEFAULT_TOOLBAR_STYLE, IDR_EXPLORER);
@@ -65,7 +64,6 @@ int CMyDockablePane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndToolBar.SetOwner(this);
 
-	// All commands will be routed via this control , not via the parent frame:
 	m_wndToolBar.SetRouteCommandsViaFrame(FALSE);
 	AdjustLayout();
 	return 0;
